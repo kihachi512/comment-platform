@@ -5,21 +5,22 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Home() {
   const [posts, setPosts] = useState<{ postId: string; title: string; body: string }[]>([]);
   const { data: session } = useSession();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState<string>("");
 
-  // 投稿一覧の取得
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
 
-  // ユーザー名を DynamoDB から取得
   useEffect(() => {
     if (session?.user?.email) {
       fetch(`/api/profile?email=${session.user.email}`)
         .then((res) => res.json())
-        .then((data) => setUsername(data.username || session.user.name || "ユーザー"));
+        .then((data) => {
+          const fallback = session.user?.name || "ユーザー";
+          setUsername(data?.username || fallback);
+        });
     }
   }, [session]);
 
@@ -39,6 +40,12 @@ export default function Home() {
           <div className="text-sm text-right space-y-1">
             <div>{username} さん</div>
             <div className="flex gap-2">
+              <button
+                className="bg-blue-600 text-white px-3 py-1 rounded"
+                onClick={() => (window.location.href = "/approve")}
+              >
+                コメントの承認
+              </button>
               <button
                 className="bg-gray-500 text-white px-3 py-1 rounded"
                 onClick={() => signOut()}
@@ -60,12 +67,7 @@ export default function Home() {
           </Link>
           <Link href="/profile">
             <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-              ユーザー名設定
-            </button>
-          </Link>
-          <Link href="/approve">
-            <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
-              コメントの承認
+              プロフィール設定
             </button>
           </Link>
         </div>
