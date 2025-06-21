@@ -11,7 +11,10 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      session.user.id = token.sub;
+      if (session.user) {
+        // 型エラー回避のため user.id を追加
+        (session.user as any).id = token.sub;
+      }
       return session;
     },
   },
