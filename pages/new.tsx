@@ -21,6 +21,7 @@ export default function NewPostPage() {
         postId: uuidv4(),
         ...form,
         authorId: session.user.email, // 👈 ログインユーザーのメールアドレスを保存
+        authorName: session.user.name,
       }),
     });
 

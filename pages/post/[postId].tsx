@@ -1,6 +1,8 @@
+// pages/post/[postId].tsx
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function PostDetail() {
   const router = useRouter();
@@ -9,6 +11,7 @@ export default function PostDetail() {
   const [post, setPost] = useState<any>(null);
   const [comments, setComments] = useState<any[]>([]);
   const [form, setForm] = useState({ content: "", type: "praise" });
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (!postId) return;
@@ -27,6 +30,21 @@ export default function PostDetail() {
     setComments(await res.json());
   };
 
+  const deletePost = async () => {
+    if (!confirm("この投稿を削除しますか？")) return;
+    const res = await fetch("/api/post/delete", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ postId }),
+    });
+    if (res.ok) {
+      alert("投稿を削除しました");
+      router.push("/");
+    } else {
+      alert("削除に失敗しました");
+    }
+  };
+
   if (!post) return <div className="p-4">読み込み中...</div>;
 
   return (
@@ -38,11 +56,22 @@ export default function PostDetail() {
       {/* 記事本文 */}
       <section className="bg-white border rounded p-6 shadow-sm">
         <h1 className="text-2xl font-bold mb-3">📝 記事本文</h1>
-        <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+        <h2 className="text-xl font-semibold mb-1">{post.title}</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          投稿者: {post.authorName ?? "匿名ユーザー"}
+        </p>
         <p className="text-gray-800 whitespace-pre-wrap">{post.body}</p>
+
+        {session?.user?.email === post.authorId && (
+          <button
+            className="mt-6 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            onClick={deletePost}
+          >
+            🗑 削除
+          </button>
+        )}
       </section>
 
-      {/* 区切り線 */}
       <hr className="my-8 border-gray-300" />
 
       {/* 承認済みコメント一覧 */}
@@ -60,7 +89,6 @@ export default function PostDetail() {
         )}
       </section>
 
-      {/* 区切り線（任意） */}
       <hr className="my-8 border-gray-200" />
 
       {/* コメントフォーム */}

@@ -5,69 +5,88 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Home() {
   const [posts, setPosts] = useState<{ postId: string; title: string; body: string }[]>([]);
   const { data: session } = useSession();
+  const [username, setUsername] = useState("");
 
+  // 投稿一覧の取得
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
 
+  // ユーザー名を DynamoDB から取得
+  useEffect(() => {
+    if (session?.user?.email) {
+      fetch(`/api/profile?email=${session.user.email}`)
+        .then((res) => res.json())
+        .then((data) => setUsername(data.username || session.user.name || "ユーザー"));
+    }
+  }, [session]);
+
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      {/* 操作セクション */}
-      <div className="bg-gray-50 border rounded-lg p-4 mb-8 shadow-sm">
-        <div className="flex justify-between items-center mb-3">
-          <h1 className="text-2xl font-bold">ようこそ</h1>
-          {!session ? (
-            <button
-              className="bg-blue-500 text-white px-4 py-1 rounded"
-              onClick={() => signIn("google")}
-            >
-              Googleでログイン
-            </button>
-          ) : (
-            <div className="text-sm text-right">
-              <p className="mb-1">{session.user?.name} さん</p>
+    <div className="max-w-3xl mx-auto p-6 space-y-6">
+      {/* ヘッダー */}
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold">ようこそ</h1>
+        {!session ? (
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => signIn("google")}
+          >
+            Googleでログイン
+          </button>
+        ) : (
+          <div className="text-sm text-right space-y-1">
+            <div>{username} さん</div>
+            <div className="flex gap-2">
               <button
-                className="bg-gray-600 text-white px-3 py-1 rounded"
+                className="bg-gray-500 text-white px-3 py-1 rounded"
                 onClick={() => signOut()}
               >
                 ログアウト
               </button>
             </div>
-          )}
-        </div>
-
-        {session && (
-          <div className="flex flex-col gap-2 mt-2">
-            <Link href="/new" className="text-blue-600 underline">
-              ▶ 新規投稿
-            </Link>
-            <Link href="/approve" className="text-blue-600 underline">
-              ▶ コメントの承認
-            </Link>
           </div>
         )}
       </div>
 
+      {/* ログインユーザー専用操作 */}
+      {session && (
+        <div className="flex flex-wrap gap-4">
+          <Link href="/new">
+            <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+              新規投稿
+            </button>
+          </Link>
+          <Link href="/profile">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              ユーザー名設定
+            </button>
+          </Link>
+          <Link href="/approve">
+            <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+              コメントの承認
+            </button>
+          </Link>
+        </div>
+      )}
+
+      {/* 区切り */}
+      <hr className="border-t border-gray-300 my-4" />
+
       {/* 投稿一覧 */}
-      <div>
-        <h2 className="text-xl font-semibold mb-4 border-b pb-1">投稿一覧</h2>
-        {posts.length === 0 ? (
-          <p className="text-gray-500">まだ投稿がありません。</p>
-        ) : (
-          posts.map((post) => (
-            <div key={post.postId} className="border rounded p-4 mb-4 shadow-sm">
-              <Link
-                href={`/post/${post.postId}`}
-                className="text-lg font-semibold text-blue-700 hover:underline"
-              >
-                {post.title}
-              </Link>
-              <p className="text-gray-700 mt-2">{post.body}</p>
-            </div>
-          ))
-        )}
+      <div className="space-y-4">
+        {posts.map((post) => (
+          <div key={post.postId} className="border p-4 rounded shadow-sm bg-white">
+            <Link
+              href={`/post/${post.postId}`}
+              className="text-lg font-semibold text-blue-600 hover:underline"
+            >
+              {post.title}
+            </Link>
+            <p className="text-gray-700 mt-2">{post.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
