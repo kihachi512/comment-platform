@@ -1,12 +1,15 @@
+// pages/api/auth/[...nextauth].ts
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
-import { nanoid } from "nanoid";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { customAlphabet } from "nanoid";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const USERS_TABLE = "Users";
+const TABLE_NAME = "Users";
+const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -14,44 +17,54 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      if (!session.user?.email) return session;
-
-      try {
-        const result = await client.send(
-          new GetItemCommand({
-            TableName: USERS_TABLE,
-            Key: { email: { S: session.user.email } },
-          })
-        );
-
-        if (result.Item) {
-          const userData = {
-            userId: result.Item.userId?.S || "",
-            username: result.Item.username?.S || "",
-          };
-          session.user.id = userData.userId;
-          session.user.name = userData.username || session.user.name;
-        } else {
-          // 初回ログインユーザーなので保存
-          const newUserId = nanoid(12); // 12桁の一意IDを生成
-          await client.send(
-            new PutItemCommand({
-              TableName: USERS_TABLE,
-              Item: {
-                email: { S: session.user.email },
-                userId: { S: newUserId },
-                username: { S: session.user.name || "ユーザー" },
-              },
+    async jwt({ token, user }) {
+      // 初回ログイン時に user オブジェクトが存在する
+      if (user?.email) {
+        const email = user.email;
+        try {
+          const result = await client.send(
+            new GetItemCommand({
+              TableName: TABLE_NAME,
+              Key: { email: { S: email } },
             })
           );
-          session.user.id = newUserId;
-        }
-      } catch (err) {
-        console.error("セッション処理エラー:", err);
-      }
 
-      return session;
+          if (result.Item) {
+            const userData = unmarshall(result.Item);
+            token.userId = userData.userId;
+            token.username = userData.username;
+          } else {
+            // ユーザーがいなければ新規登録
+            const newUserId = nanoid();
+            await client.send(
+              new PutItemCommand({
+                TableName: TABLE_NAME,
+                Item: {
+                  email: { S: email },
+                  username: { S: user.name ?? "" },
+                  userId: { S: newUserId },
+                },
+              })
+            );
+            token.userId = newUserId;
+            token.username = user.name ?? "";
+          }
+        } catch (err) {
+          console.error("JWT callback error:", err);
+        }
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      // 必要な情報をセッションに追加
+      return {
+        ...session,
+        userId: token.userId,
+        username: token.username,
+      };
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
