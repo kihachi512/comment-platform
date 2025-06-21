@@ -1,6 +1,8 @@
 // pages/api/auth/[...nextauth].ts
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { JWT } from "next-auth/jwt";
+import { User } from "next-auth";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { customAlphabet } from "nanoid";
@@ -9,7 +11,7 @@ const client = new DynamoDBClient({ region: "ap-northeast-1" });
 const TABLE_NAME = "Users";
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -17,8 +19,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      // 初回ログイン時に user オブジェクトが存在する
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user?.email) {
         const email = user.email;
         try {
@@ -34,7 +35,6 @@ export const authOptions = {
             token.userId = userData.userId;
             token.username = userData.username;
           } else {
-            // ユーザーがいなければ新規登録
             const newUserId = nanoid();
             await client.send(
               new PutItemCommand({
@@ -56,8 +56,7 @@ export const authOptions = {
       return token;
     },
 
-    async session({ session, token }) {
-      // 必要な情報をセッションに追加
+    async session({ session, token }: { session: Session; token: JWT }) {
       return {
         ...session,
         userId: token.userId,
