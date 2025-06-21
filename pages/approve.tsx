@@ -6,23 +6,26 @@ export default function ApprovePage() {
   const [comments, setComments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!session?.user?.email) return;
+useEffect(() => {
+  const fetchData = async () => {
+    if (!session || !session.user?.email) return; // ← 安全に確認
 
-      const postsRes = await fetch("/api/posts");
-      const posts = await postsRes.json();
-      const myPostIds = posts
-        .filter((post: any) => post.authorId === session.user.email)
-        .map((post: any) => post.postId);
+    const postsRes = await fetch("/api/posts");
+    const posts = await postsRes.json();
+    const myPostIds = posts
+      .filter((post: any) => post.authorId === session.user!.email)
+      .map((post: any) => post.postId);
 
-      const commentsRes = await fetch("/api/comments?unapproved=true");
-      const allComments = await commentsRes.json();
+    const commentsRes = await fetch("/api/comments?unapproved=true");
+    const allComments = await commentsRes.json();
 
-      const filtered = allComments.filter((c: any) => myPostIds.includes(c.postId));
-      setComments(filtered);
-      setLoading(false);
-    };
+    const filtered = allComments.filter((c: any) => myPostIds.includes(c.postId));
+    setComments(filtered);
+  };
+
+  fetchData();
+}, [session]);
+
 
     fetchData();
   }, [session]);
