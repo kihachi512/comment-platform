@@ -1,13 +1,32 @@
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function ApprovePage() {
+  const { data: session } = useSession();
   const [comments, setComments] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("/api/comments?unapproved=true")
-      .then((res) => res.json())
-      .then(setComments);
-  }, []);
+    const fetchData = async () => {
+      if (!session?.user?.email) return;
+
+      // 自分の投稿IDを取得
+      const postsRes = await fetch("/api/posts");
+      const posts = await postsRes.json();
+      const myPostIds = posts
+        .filter((post: any) => post.authorId === session.user.email)
+        .map((post: any) => post.postId);
+
+      // 全未承認コメント取得
+      const commentsRes = await fetch("/api/comments?unapproved=true");
+      const allComments = await commentsRes.json();
+
+      // 自分の投稿に対するコメントだけを表示
+      const filtered = allComments.filter((c: any) => myPostIds.includes(c.postId));
+      setComments(filtered);
+    };
+
+    fetchData();
+  }, [session]);
 
   const approve = async (commentId: string) => {
     await fetch("/api/comments", {
