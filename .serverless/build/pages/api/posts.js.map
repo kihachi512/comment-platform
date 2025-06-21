@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../pages/api/posts.ts"],
+  "sourcesContent": ["// pages/api/posts.ts\r\nimport { NextApiRequest, NextApiResponse } from \"next\";\r\nimport { DynamoDBClient, ScanCommand } from \"@aws-sdk/client-dynamodb\";\r\nimport { unmarshall } from \"@aws-sdk/util-dynamodb\";\r\n\r\nconst client = new DynamoDBClient({ region: \"ap-northeast-1\" });\r\n\r\nexport default async function handler(req: NextApiRequest, res: NextApiResponse) {\r\n  try {\r\n    const result = await client.send(new ScanCommand({ TableName: \"Posts\" }));\r\n    const items = result.Items?.map((item) => unmarshall(item));\r\n    res.status(200).json(items);\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ error: \"\u53D6\u5F97\u306B\u5931\u6557\u3057\u307E\u3057\u305F\" });\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEA,6BAA4C;AAC5C,2BAA2B;AAE3B,IAAM,SAAS,IAAI,sCAAe,EAAE,QAAQ,iBAAiB,CAAC;AAE9D,eAAO,QAA+B,KAAqB,KAAsB;AAC/E,MAAI;AACF,UAAM,SAAS,MAAM,OAAO,KAAK,IAAI,mCAAY,EAAE,WAAW,QAAQ,CAAC,CAAC;AACxE,UAAM,QAAQ,OAAO,OAAO,IAAI,CAAC,aAAS,iCAAW,IAAI,CAAC;AAC1D,QAAI,OAAO,GAAG,EAAE,KAAK,KAAK;AAAA,EAC5B,SAAS,KAAK;AACZ,YAAQ,MAAM,GAAG;AACjB,QAAI,OAAO,GAAG,EAAE,KAAK,EAAE,OAAO,yDAAY,CAAC;AAAA,EAC7C;AACF;",
+  "names": []
+}
