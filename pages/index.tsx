@@ -5,8 +5,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Home() {
   const [posts, setPosts] = useState<{ postId: string; title: string; body: string }[]>([]);
   const { data: session } = useSession();
-  const [username, setUsername] = useState("");
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
     fetch("/api/posts")
@@ -15,15 +15,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (session?.user?.email) {
-      fetch(`/api/profile?email=${session.user.email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          const fallback = session.user?.name || "ユーザー";
-          setUsername(data?.username || fallback);
-          setUserId(data?.userId || "");
-        });
-    }
+    const fetchUser = async () => {
+      if (!session?.user?.email) return;
+
+      const res = await fetch(`/api/profile?email=${session.user.email}`);
+      const data = await res.json();
+
+      const fallbackName = session.user.name || "ユーザー";
+      setUsername(data?.username || fallbackName);
+      setUserId(data?.userId || "");
+    };
+
+    fetchUser();
   }, [session]);
 
   return (
@@ -41,7 +44,10 @@ export default function Home() {
         ) : (
           <div className="text-sm text-right space-y-1">
             <div>
-              {username} <span className="text-gray-500 text-xs">#{userId}</span> さん
+              {username} さん
+              {userId && (
+                <span className="ml-2 text-gray-500 text-xs">#{userId}</span>
+              )}
             </div>
             <div className="flex gap-2">
               <button
