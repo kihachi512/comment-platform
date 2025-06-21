@@ -6,28 +6,27 @@ export default function ApprovePage() {
   const [comments, setComments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  const fetchData = async () => {
-    if (!session || !session.user?.email) return; // ← 安全に確認
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!session || !session.user?.email) return;
 
-    const postsRes = await fetch("/api/posts");
-    const posts = await postsRes.json();
-    const myPostIds = posts
-      .filter((post: any) => post.authorId === session.user!.email)
-      .map((post: any) => post.postId);
+      const postsRes = await fetch("/api/posts");
+      const posts = await postsRes.json();
+      const myPostIds = posts
+        .filter((post: any) => post.authorId === session.user!.email)
+        .map((post: any) => post.postId);
 
-    const commentsRes = await fetch("/api/comments?unapproved=true");
-    const allComments = await commentsRes.json();
+      const commentsRes = await fetch("/api/comments?unapproved=true");
+      const allComments = await commentsRes.json();
 
-    const filtered = allComments.filter((c: any) => myPostIds.includes(c.postId));
-    setComments(filtered);
-  };
+      const filtered = allComments.filter((c: any) =>
+        myPostIds.includes(c.postId)
+      );
+      setComments(filtered);
+      setLoading(false); // ✅ 読み込み完了フラグを更新
+    };
 
-  fetchData();
-}, [session]);
-
-
-    fetchData();
+    fetchData(); // ✅ 内部で定義して内部で呼び出す
   }, [session]);
 
   const approve = async (commentId: string) => {
@@ -54,7 +53,10 @@ useEffect(() => {
       ) : (
         <div className="space-y-4">
           {comments.map((c) => (
-            <div key={c.commentId} className="border rounded p-4 bg-white shadow-sm">
+            <div
+              key={c.commentId}
+              className="border rounded p-4 bg-white shadow-sm"
+            >
               <p className="text-sm text-gray-600 mb-1">投稿ID: {c.postId}</p>
               <p className="text-sm text-gray-600 mb-1">タイプ: {c.type}</p>
               <p className="mb-3">{c.content}</p>
