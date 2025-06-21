@@ -1,11 +1,8 @@
+// pages/api/profile.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import {
-  DynamoDBClient,
-  GetItemCommand,
-  PutItemCommand,
-} from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 const TABLE_NAME = "Users";
@@ -23,16 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
+      // 既存のuserIdを維持するため取得
       const existing = await client.send(
         new GetItemCommand({
           TableName: TABLE_NAME,
           Key: { email: { S: email } },
         })
       );
-
-      const userId =
-        existing.Item?.userId?.S ||
-        uuidv4().replace(/-/g, "").slice(0, 12); // 12桁の一意ID
+      const existingData = existing.Item ? unmarshall(existing.Item) : {};
+      const userId = existingData.userId || nanoid(12);
 
       await client.send(
         new PutItemCommand({
@@ -51,16 +47,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
+  // GETの場合
   try {
     const result = await client.send(
       new GetItemCommand({
         TableName: TABLE_NAME,
-        Key: { email: { S: email } },
+        Key: {
+          email: { S: email },
+        },
       })
     );
 
     if (!result.Item) {
-      return res.status(200).json({ username: "", userId: "" });
+      // 初回ログイン時: 新規にID発行して保存
+      const newUserId = nanoid(12);
+      await client.send(
+        new PutItemCommand({
+          TableName: TABLE_NAME,
+          Item: {
+            email: { S: email },
+            username: { S: "" },
+            userId: { S: newUserId },
+          },
+        })
+      );
+      return res.status(200).json({ username: "", userId: newUserId });
     }
 
     const data = unmarshall(result.Item);
