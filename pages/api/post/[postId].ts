@@ -26,7 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(404).json({ error: "投稿が見つかりません" });
     }
 
-    res.status(200).json(unmarshall(result.Item));
+    const post = unmarshall(result.Item);
+    res.status(200).json(post);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "サーバーエラー" });

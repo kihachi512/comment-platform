@@ -5,7 +5,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Home() {
   const [posts, setPosts] = useState<{ postId: string; title: string; body: string }[]>([]);
   const { data: session } = useSession();
-  const [username, setUsername] = useState<string>("");
+  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     fetch("/api/posts")
@@ -20,6 +21,7 @@ export default function Home() {
         .then((data) => {
           const fallback = session.user?.name || "ユーザー";
           setUsername(data?.username || fallback);
+          setUserId(data?.userId || "");
         });
     }
   }, [session]);
@@ -38,7 +40,9 @@ export default function Home() {
           </button>
         ) : (
           <div className="text-sm text-right space-y-1">
-            <div>{username} さん</div>
+            <div>
+              {username} <span className="text-gray-500 text-xs">#{userId}</span> さん
+            </div>
             <div className="flex gap-2">
               <button
                 className="bg-blue-600 text-white px-3 py-1 rounded"
