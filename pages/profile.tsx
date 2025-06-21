@@ -48,7 +48,7 @@ export default function ProfilePage() {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="ももんが"
         />
-        <p className="text-sm text-gray-600">一意のID: <span className="font-mono">#{userId}</span></p>
+        <p className="text-sm text-gray-600">ユーザーID：<span className="font-mono">#{userId}</span></p>
         <button
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           onClick={saveUsername}

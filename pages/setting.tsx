@@ -43,7 +43,6 @@ export default function SettingsPage() {
         className="border p-2 w-full mb-4 rounded"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="ももんが"
       />
       <button
         onClick={save}
