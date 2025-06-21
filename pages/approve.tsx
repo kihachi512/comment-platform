@@ -12,9 +12,11 @@ export default function ApprovePage() {
       // 自分の投稿IDを取得
       const postsRes = await fetch("/api/posts");
       const posts = await postsRes.json();
-      const myPostIds = posts
-        .filter((post: any) => post.authorId === session.user.email)
-        .map((post: any) => post.postId);
+	  const userEmail = session.user?.email;
+	  const myPostIds = posts
+	  .filter((post: any) => post.authorId === userEmail)
+	  .map((post: any) => post.postId);
+
 
       // 全未承認コメント取得
       const commentsRes = await fetch("/api/comments?unapproved=true");
