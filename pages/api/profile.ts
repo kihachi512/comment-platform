@@ -1,4 +1,9 @@
-import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import {
+  DynamoDBClient,
+  GetItemCommand,
+  PutItemCommand,
+  QueryCommand,
+} from "@aws-sdk/client-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { nanoid } from "nanoid";
