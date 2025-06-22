@@ -46,7 +46,7 @@ export default function PostDetail() {
               minute: "2-digit",
             }),
           }))
-          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         setComments(enriched);
       });
   }, [postId]);
