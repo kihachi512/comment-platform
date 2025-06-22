@@ -2,13 +2,11 @@
 import NextAuth, { AuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
-import { User } from "next-auth";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { customAlphabet } from "nanoid";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const TABLE_NAME = "Users";
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
 
 export const authOptions: AuthOptions = {
@@ -19,13 +17,13 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user?.email) {
         const email = user.email;
         try {
           const result = await client.send(
             new GetItemCommand({
-              TableName: TABLE_NAME,
+              TableName: "Users",
               Key: { email: { S: email } },
             })
           );
@@ -38,7 +36,7 @@ export const authOptions: AuthOptions = {
             const newUserId = nanoid();
             await client.send(
               new PutItemCommand({
-                TableName: TABLE_NAME,
+                TableName: "Users",
                 Item: {
                   email: { S: email },
                   username: { S: user.name ?? "" },
@@ -57,11 +55,9 @@ export const authOptions: AuthOptions = {
     },
 
     async session({ session, token }: { session: Session; token: JWT }) {
-      return {
-        ...session,
-        userId: token.userId,
-        username: token.username,
-      };
+      session.user.userId = token.userId as string;
+      session.user.username = token.username as string;
+      return session;
     },
   },
 };

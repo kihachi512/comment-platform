@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
-  const [posts, setPosts] = useState<{ postId: string; title: string; body: string }[]>([]);
+  const [posts, setPosts] = useState<{ postId: string; body: string }[]>([]);
   const { data: session } = useSession();
   const [username, setUsername] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
@@ -33,7 +33,7 @@ export default function Home() {
     <div className="max-w-3xl mx-auto p-6 space-y-6">
       {/* ヘッダー */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">ようこそ</h1>
+        <h1 className="text-2xl font-bold">Textories</h1>
         {!session ? (
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded"
@@ -50,12 +50,6 @@ export default function Home() {
               )}
             </div>
             <div className="flex gap-2">
-              <button
-                className="bg-blue-600 text-white px-3 py-1 rounded"
-                onClick={() => (window.location.href = "/approve")}
-              >
-                コメントの承認
-              </button>
               <button
                 className="bg-gray-500 text-white px-3 py-1 rounded"
                 onClick={() => signOut()}
@@ -92,11 +86,10 @@ export default function Home() {
           <div key={post.postId} className="border p-4 rounded shadow-sm bg-white">
             <Link
               href={`/post/${post.postId}`}
-              className="text-lg font-semibold text-blue-600 hover:underline"
+              className="block text-gray-800 hover:text-blue-600 whitespace-pre-wrap"
             >
-              {post.title}
+              {post.body}
             </Link>
-            <p className="text-gray-700 mt-2">{post.body}</p>
           </div>
         ))}
       </div>
