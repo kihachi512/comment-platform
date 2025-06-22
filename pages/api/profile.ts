@@ -1,3 +1,4 @@
+import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
   DynamoDBClient,
