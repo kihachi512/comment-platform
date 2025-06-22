@@ -1,0 +1,55 @@
+/* styles/NewPost.module.css */
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.charCount {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.submitButton {
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

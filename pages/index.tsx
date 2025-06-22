@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import styles from "../styles/Home.module.css"; // CSSモジュール読み込み
 
 export default function Home() {
   const [posts, setPosts] = useState<{ postId: string; body: string }[]>([]);
@@ -11,7 +12,13 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((data) => {
+        const sorted = data.sort(
+          (a: any, b: any) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setPosts(sorted);
+      });
   }, []);
 
   useEffect(() => {
@@ -30,64 +37,46 @@ export default function Home() {
   }, [session]);
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className={styles.container}>
       {/* ヘッダー */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Textories</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Textories〈 A note that only lasts for one hour 〉</h1>
         {!session ? (
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={() => signIn("google")}
-          >
+          <button className={styles.loginButton} onClick={() => signIn("google")}>
             Googleでログイン
           </button>
         ) : (
-          <div className="text-sm text-right space-y-1">
+          <div className={styles.userInfo}>
             <div>
-              {username} さん
-              {userId && (
-                <span className="ml-2 text-gray-500 text-xs">#{userId}</span>
-              )}
+              {username} さん{" "}
+              {userId && <span className={styles.userId}>#{userId}</span>}
             </div>
-            <div className="flex gap-2">
-              <button
-                className="bg-gray-500 text-white px-3 py-1 rounded"
-                onClick={() => signOut()}
-              >
-                ログアウト
-              </button>
-            </div>
+            <button className={styles.logoutButton} onClick={() => signOut()}>
+              ログアウト
+            </button>
           </div>
         )}
       </div>
 
-      {/* ログインユーザー専用操作 */}
+      {/* 操作ボタン */}
       {session && (
-        <div className="flex flex-wrap gap-4">
+        <div className={styles.actions}>
           <Link href="/new">
-            <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-              新規投稿
-            </button>
+            <button className={styles.newPostButton}>新規投稿</button>
           </Link>
           <Link href="/profile">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-              プロフィール設定
-            </button>
+            <button className={styles.profileButton}>プロフィール設定</button>
           </Link>
         </div>
       )}
 
-      {/* 区切り */}
-      <hr className="border-t border-gray-300 my-4" />
+      <hr className={styles.divider} />
 
       {/* 投稿一覧 */}
-      <div className="space-y-4">
+      <div className={styles.postList}>
         {posts.map((post) => (
-          <div key={post.postId} className="border p-4 rounded shadow-sm bg-white">
-            <Link
-              href={`/post/${post.postId}`}
-              className="block text-gray-800 hover:text-blue-600 whitespace-pre-wrap"
-            >
+          <div key={post.postId} className={styles.postCard}>
+            <Link href={`/post/${post.postId}`} className={styles.postBody}>
               {post.body}
             </Link>
           </div>

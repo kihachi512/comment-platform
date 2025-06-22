@@ -1,6 +1,6 @@
-// pages/profile.tsx
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import styles from "../styles/Profile.module.css";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -34,28 +34,23 @@ export default function ProfilePage() {
   };
 
   if (!session) {
-    return <div className="p-4">ログインが必要です。</div>;
+    return <div className={styles.message}>ログインが必要です。</div>;
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 space-y-4">
-      <h1 className="text-2xl font-bold mb-4">💋プロフィール</h1>
-      <div className="space-y-2">
-        <label className="block text-sm font-medium">ユーザー名：</label>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>💋プロフィール</h1>
+      <div className={styles.formGroup}>
+        <label className={styles.label}>ユーザー名：</label>
         <input
-          className="border p-2 w-full rounded"
+          className={styles.input}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="ももんが"
         />
-        <p className="text-sm text-gray-600">ユーザーID：<span className="font-mono">#{userId}</span></p>
-        <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={saveUsername}
-        >
-          保存
-        </button>
-        {message && <p className="text-green-600">{message}</p>}
+        <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
+        <button className={styles.button} onClick={saveUsername}>保存</button>
+        {message && <p className={styles.success}>{message}</p>}
       </div>
     </div>
   );

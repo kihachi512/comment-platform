@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import styles from "../styles/NewPost.module.css";
 
 export default function NewPostPage() {
   const [form, setForm] = useState({ body: "" });
@@ -44,26 +45,26 @@ export default function NewPostPage() {
   };
 
   if (status === "loading") {
-    return <div className="p-4">ログイン状態を確認中...</div>;
+    return <div className={styles.loading}>ログイン状態を確認中...</div>;
   }
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">🆕 新規投稿</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>🆕 新規投稿</h1>
 
       <textarea
-        className="border p-2 w-full mb-2 rounded"
+        className={styles.textarea}
         rows={4}
         placeholder="本文"
         value={form.body}
         onChange={(e) => setForm({ ...form, body: e.target.value })}
       />
-      <p className="text-sm text-gray-500 mb-3">{form.body.length}/50文字</p>
+      <p className={styles.charCount}>{form.body.length}/50文字</p>
 
-      {error && <p className="text-red-600 mb-2">{error}</p>}
+      {error && <p className={styles.error}>{error}</p>}
 
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+        className={styles.submitButton}
         onClick={submit}
         disabled={form.body.length > 50}
       >

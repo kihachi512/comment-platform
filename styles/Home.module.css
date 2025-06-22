@@ -1,0 +1,96 @@
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.loginButton,
+.logoutButton,
+.newPostButton,
+.profileButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+.loginButton {
+  background-color: #3b82f6;
+}
+
+.logoutButton {
+  background-color: #6b7280;
+}
+
+.newPostButton {
+  background-color: #059669;
+}
+
+.profileButton {
+  background-color: #2563eb;
+}
+
+.userInfo {
+  text-align: right;
+  font-size: 14px;
+}
+
+.userId {
+  color: #6b7280;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.divider {
+  border-top: 1px solid #ccc;
+  margin: 24px 0;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.postCard {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fffefc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.postCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.postBody {
+  color: #333;
+  text-decoration: none;
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.6;
+}
