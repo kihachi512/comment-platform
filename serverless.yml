@@ -23,3 +23,29 @@ resources:
           - AttributeName: postId
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+        TimeToLiveSpecification:
+          AttributeName: expiresAt
+          Enabled: true
+    CommentsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Comments
+        AttributeDefinitions:
+          - AttributeName: commentId
+            AttributeType: S
+          - AttributeName: postId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: commentId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: postId-index
+            KeySchema:
+              - AttributeName: postId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        TimeToLiveSpecification:
+          AttributeName: expiresAt
+          Enabled: true

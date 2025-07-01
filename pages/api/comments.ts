@@ -62,6 +62,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             type: { S: type },
             authorId: { S: authorId }, // ← 🔁 userId → authorId に統一
             createdAt: { S: new Date().toISOString() },
+            expiresAt: {
+              N: `${Math.floor(Date.now() / 1000) + 60 * 60 * 24}`, // 24時間後
+            },
           },
         })
       );
