@@ -23,6 +23,13 @@ export default function ProfilePage() {
 
   const saveUsername = async () => {
     setError("");
+    if (username.length > 8) {
+      setError("ユーザー名は8文字以内です");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 1800);
+      return;
+    }
+
     const res = await fetch("/api/profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -61,9 +68,11 @@ export default function ProfilePage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="ももんが"
+            maxLength={8}
           />
+          <p className={styles.charCount}>{username.length}/8文字</p>
           <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
-          <button className={styles.button} onClick={saveUsername}>保存</button>
+          <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
           {showError && (
             <div className={styles.errorPopup}>
               <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
