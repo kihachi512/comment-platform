@@ -10,9 +10,9 @@ export default function About() {
           <b>Textories</b>は、<b>投稿が1時間で自動的に見えなくなる</b>新感覚のメッセージサービスです。
         </p>
         <ul className={styles.list}>
-          <li className={styles.listItem}>・<b>投稿は1時間後に自動で非表示</b>になります。</li>
-          <li className={styles.listItem}>・<b>投稿の閲覧・コメント</b>はアカウントなしでも可能です。</li>
-          <li className={styles.listItem}>・<b>投稿</b>にはGoogleアカウント連携によるログインが必要です。</li>
+          <li className={styles.listItem}><b>投稿は1時間後に自動で非表示</b>になります。</li>
+          <li className={styles.listItem}><b>投稿の閲覧・コメント</b>はアカウントなしでも可能です。</li>
+          <li className={styles.listItem}><b>投稿</b>にはGoogleアカウント連携によるログインが必要です。</li>
         </ul>
         <p className={styles.subText}>
           気軽に思いを残したり、匿名でコメントしたりできる、<br />
