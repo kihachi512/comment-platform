@@ -1,20 +1,15 @@
 // components/NavBar.tsx
-import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import styles from "../styles/NavBar.module.css";
 
-export default function NavBar() {
-  const { data: session } = useSession();
-
+export default function NavBar({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="p-2 border-b flex justify-between items-center">
-      <h1 className="font-bold">コメントプラットフォーム</h1>
-      {session ? (
-        <div>
-          {session.user?.name} さん
-          <button className="ml-2 text-blue-600" onClick={() => signOut()}>ログアウト</button>
-        </div>
-      ) : (
-        <button className="text-blue-600" onClick={() => signIn()}>ログイン</button>
-      )}
-    </div>
+    <header className={styles.header}>
+      <Link href="/" className={styles.logo}>
+        <span className={styles.logoMain}>Textories</span>
+        <span className={styles.logoSub}>〈 A note that only lasts for one hour 〉</span>
+      </Link>
+      <nav className={styles.nav}>{children}</nav>
+    </header>
   );
 }
