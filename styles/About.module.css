@@ -21,7 +21,7 @@
 .description {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
 }
 .list {
   font-size: 1.05rem;
@@ -35,7 +35,7 @@
   color: #6b7280;
   font-size: 0.98rem;
   margin-bottom: 32px;
-  text-align: center;
+  text-align: left;
 }
 .backButton {
   display: block;
