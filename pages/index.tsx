@@ -38,8 +38,10 @@ export default function Home() {
   }, [session]);
 
   return (
-    <>
-      <NavBar>
+    <div className={styles.container}>
+      {/* ヘッダー下のログイン・ボタン群 */}
+      <div className={styles.header}>
+        <h1 className={styles.title}>Textories〈 A note that only lasts for one hour 〉</h1>
         {!session ? (
           <button className={styles.loginButton} onClick={() => signIn("google")}> 
             Googleでログイン
@@ -55,22 +57,22 @@ export default function Home() {
             </button>
           </div>
         )}
-        <div className={styles.actions}>
-          {session && (
-            <>
-              <Link href="/new">
-                <button className={styles.newPostButton}>新規投稿</button>
-              </Link>
-              <Link href="/profile">
-                <button className={styles.profileButton}>プロフィール設定</button>
-              </Link>
-            </>
-          )}
-          <Link href="/about">
-            <button className={styles.aboutButton}>サービス概要</button>
-          </Link>
-        </div>
-      </NavBar>
+      </div>
+      <div className={styles.actions}>
+        {session && (
+          <>
+            <Link href="/new">
+              <button className={styles.newPostButton}>新規投稿</button>
+            </Link>
+            <Link href="/profile">
+              <button className={styles.profileButton}>プロフィール設定</button>
+            </Link>
+          </>
+        )}
+        <Link href="/about">
+          <button className={styles.aboutButton}>サービス概要</button>
+        </Link>
+      </div>
 
       <hr className={styles.divider} />
 
@@ -84,6 +86,6 @@ export default function Home() {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 }
