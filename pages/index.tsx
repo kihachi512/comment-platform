@@ -80,4 +80,13 @@ export default function Home() {
       {/* 投稿一覧 */}
       <div className={styles.postList}>
         {posts.map((post) => (
-          <Link key={post.postId} href={`
+          <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
+            <div className={styles.postCard} tabIndex={0} role="button">
+              <span className={styles.postBody}>{post.body}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
