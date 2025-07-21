@@ -64,31 +64,57 @@
   font-size: 0.95rem;
   margin-left: 2px;
 }
-.loginButton {
-  background-color: #3b82f6;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+.nav button, .loginButton, .logoutButton {
   font-weight: bold;
-  transition: background 0.2s;
+  font-size: 15px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  margin: 0 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  position: relative;
+  top: 0;
+}
+.nav button:active, .loginButton:active, .logoutButton:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.newPostButton {
+  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
+  color: #fff;
+}
+.newPostButton:hover {
+  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
+}
+.profileButton {
+  background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
+  color: #fff;
+}
+.profileButton:hover {
+  background: linear-gradient(90deg, #3b82f6 60%, #2563eb 100%);
+}
+.aboutButton {
+  background: linear-gradient(90deg, #f59e42 60%, #fbbf24 100%);
+  color: #fff;
+}
+.aboutButton:hover {
+  background: linear-gradient(90deg, #fbbf24 60%, #f59e42 100%);
+}
+.loginButton {
+  background: linear-gradient(90deg, #3b82f6 60%, #2563eb 100%);
+  color: #fff;
 }
 .loginButton:hover {
-  background-color: #2563eb;
+  background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
 }
 .logoutButton {
-  background-color: #6b7280;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: background 0.2s;
+  background: linear-gradient(90deg, #6b7280 60%, #374151 100%);
+  color: #fff;
 }
 .logoutButton:hover {
-  background-color: #374151;
+  background: linear-gradient(90deg, #374151 60%, #6b7280 100%);
 }

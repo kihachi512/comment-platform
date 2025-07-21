@@ -27,7 +27,7 @@ export default function NavBar() {
       <div className={styles.userArea}>
         {session ? (
           <>
-            <span className={styles.userName}>{session.user?.name || "ユーザー"}</span>
+            <span className={styles.userName}>{session.user?.username || session.user?.name || "ユーザー"}</span>
             {session.user?.userId && (
               <span className={styles.userId}>#{session.user.userId}</span>
             )}
