@@ -33,7 +33,7 @@ export default function ProfilePage() {
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 1800);
       // セッション情報を更新
-      await update({ ...session, user: { ...session?.user, username } });
+      await update();
     } else {
       setError("更新に失敗しました。");
       setShowError(true);
