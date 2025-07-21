@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:site_name" content="Textories" />
         <meta name="twitter:card" content="summary" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
       <Component {...pageProps} />
