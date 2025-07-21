@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 
 export default function ProfilePage() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
@@ -32,6 +32,8 @@ export default function ProfilePage() {
     if (res.ok) {
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 1800);
+      // セッション情報を更新
+      await update({ ...session, user: { ...session?.user, username } });
     } else {
       setError("更新に失敗しました。");
       setShowError(true);
