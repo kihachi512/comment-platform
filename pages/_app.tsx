@@ -37,8 +37,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar toggleTheme={toggleTheme} theme={theme} />
-      <Component {...pageProps} />
+      <NavBar />
+      <Component {...pageProps} toggleTheme={toggleTheme} theme={theme} />
     </SessionProvider>
   );
 }
