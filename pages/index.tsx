@@ -39,7 +39,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <hr className={styles.divider} />
 
       {/* 投稿一覧 */}
       <div className={styles.postList}>
