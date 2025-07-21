@@ -118,3 +118,48 @@
 .logoutButton:hover {
   background: linear-gradient(90deg, #374151 60%, #6b7280 100%);
 }
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 0 10px 0;
+    margin-bottom: 16px;
+  }
+  .logoWrapper {
+    margin: 0 auto 10px auto;
+    justify-content: center;
+  }
+  .logoMain {
+    font-size: 1.3rem;
+  }
+  .logoSub {
+    font-size: 0.85rem;
+  }
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin: 0 0 10px 0;
+  }
+  .nav button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+  .userArea {
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    margin: 0;
+    gap: 6px;
+  }
+  .userName, .userId {
+    font-size: 0.98rem;
+  }
+  .loginButton, .logoutButton {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}

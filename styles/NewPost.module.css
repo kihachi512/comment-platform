@@ -148,3 +148,30 @@
   display: block;
   margin: 0 auto;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+  }
+  .cardWrapper {
+    max-width: 98vw;
+    padding: 24px 6vw 20px 6vw;
+    border-radius: 12px;
+  }
+  .title {
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+  }
+  .textarea {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
+  .charCount {
+    font-size: 0.92rem;
+  }
+  .submitButton {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
