@@ -15,8 +15,7 @@ export default function About() {
           <li className={styles.listItem}>投稿には<b>Googleアカウント連携によるログイン</b>が必要です。</li>
         </ul>
         <p className={styles.subText}>
-          気軽に思いを残したり、匿名でコメントしたりできる、<br />
-          「今この瞬間」だけのメッセージ体験をお楽しみください。
+          気軽に思いを残したり、匿名でコメントしたりできる、「今この瞬間」だけのメッセージ体験をお楽しみください。
         </p>
       </div>
     </div>
