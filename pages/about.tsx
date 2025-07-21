@@ -18,9 +18,6 @@ export default function About() {
           気軽に思いを残したり、匿名でコメントしたりできる、<br />
           「今この瞬間」だけのメッセージ体験をお楽しみください。
         </p>
-        <Link href="/">
-          <button className={styles.profileButton} style={{background: 'linear-gradient(90deg, #2563eb 60%, #3b82f6 100%)', borderRadius: '8px', fontWeight: 'bold', fontSize: '15px', padding: '10px 22px', boxShadow: '0 2px 8px rgba(0,0,0,0.07)'}}>← トップページへ戻る</button>
-        </Link>
       </div>
     </div>
   );
