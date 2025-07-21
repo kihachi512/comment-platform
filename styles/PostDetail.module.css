@@ -135,6 +135,7 @@
   border-radius: 6px;
   font-size: 1rem;
   resize: vertical;
+  letter-spacing: normal;
 }
 .charCount {
   font-size: 0.875rem;
