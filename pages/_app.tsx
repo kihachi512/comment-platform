@@ -3,8 +3,27 @@ import { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
+import "../styles/globals.css";
+import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.body.classList.toggle("dark-mode", savedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.body.classList.toggle("dark-mode", newTheme === "dark");
+  };
+
   return (
     <SessionProvider session={(pageProps as any).session}>
       <Head>
@@ -18,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+      <NavBar toggleTheme={toggleTheme} theme={theme} />
       <Component {...pageProps} />
     </SessionProvider>
   );

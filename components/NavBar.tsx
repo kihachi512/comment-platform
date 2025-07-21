@@ -3,10 +3,15 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/NavBar.module.css";
 
-export default function NavBar() {
+export default function NavBar({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) {
   const { data: session } = useSession();
   return (
     <header className={styles.header}>
+      <div className={styles.themeToggleWrapper}>
+        <button onClick={toggleTheme} className={styles.themeToggleButton}>
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
+      </div>
       <div className={styles.logoWrapper}>
         <Link href="/" className={styles.logo}>
           <span className={styles.logoMain}>Textories</span>

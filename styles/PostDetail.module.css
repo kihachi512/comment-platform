@@ -37,7 +37,7 @@
 .pageTitle {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #22223b;
+  color: var(--text-color);
   margin: 0;
   text-align: center;
   letter-spacing: 0.01em;
@@ -45,8 +45,8 @@
 
 /* 投稿カード */
 .postCard {
-  background: #fffefc;
-  border: 1px solid #ddd;
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 40px 32px 32px 32px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
@@ -68,16 +68,16 @@
 /* 投稿者と日時 */
 .author {
   font-size: 1rem;
-  color: #4b5563;
+  color: var(--subtle-text-color);
   margin-bottom: 2px;
   text-align: center;
 }
 .userId {
-  color: #9ca3af;
+  color: var(--subtle-text-color);
 }
 .date {
   font-size: 0.98rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   margin-top: 4px;
   text-align: center;
 }
@@ -86,7 +86,7 @@
 .commentSection {
   margin: 0 auto 32px auto;
   max-width: 600px;
-  background: #fffefc;
+  background: var(--card-bg-color);
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   padding: 32px 32px 24px 32px;
@@ -102,7 +102,7 @@
 
 /* コメントなし */
 .noComments {
-  color: #6b7280;
+  color: var(--subtle-text-color);
   text-align: center;
 }
 
@@ -115,28 +115,28 @@
 
 /* 各コメントボックス */
 .commentBox {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 16px;
-  background: #ffffff;
+  background: var(--bg-color);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* コメント内容と日時 */
 .commentDate {
   font-size: 0.95rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   margin-bottom: 4px;
 }
 .commentContent {
   font-size: 1.08rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 /* コメントフォーム */
 .commentForm {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 32px 32px 24px 32px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
@@ -152,20 +152,22 @@
 .textarea {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 7px;
   font-size: 1.08rem;
   margin-bottom: 8px;
   letter-spacing: normal;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 .charCount {
   font-size: 0.98rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   margin-top: 4px;
   text-align: right;
 }
 .error {
-  color: #dc2626;
+  color: #ef4444;
   font-size: 0.98rem;
   margin-top: 4px;
   text-align: center;
