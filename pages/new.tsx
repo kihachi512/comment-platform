@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import styles from "../styles/NewPost.module.css";
-import { FaCheckCircle } from "react-icons/fa";
 
 export default function NewPostPage() {
   const [form, setForm] = useState({ body: "" });
@@ -57,7 +56,7 @@ export default function NewPostPage() {
     <div className={styles.container}>
       {showSuccess && (
         <div className={styles.successPopup}>
-          <FaCheckCircle size={22} style={{ flexShrink: 0 }} /> 投稿が作成されました！
+          <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> 投稿が作成されました！
         </div>
       )}
       <h1 className={styles.title}>🆕 新規投稿</h1>
