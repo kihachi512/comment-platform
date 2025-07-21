@@ -9,6 +9,7 @@ export default function NewPostPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [error, setError] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const submit = async () => {
     setError("");
@@ -36,8 +37,11 @@ export default function NewPostPage() {
 
     if (res.ok) {
       setForm({ body: "" });
-      alert("投稿を作成しました！");
-      router.push("/");
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        router.push("/");
+      }, 1800);
     } else {
       const data = await res.json();
       setError(data?.error || "投稿に失敗しました。");
@@ -50,6 +54,11 @@ export default function NewPostPage() {
 
   return (
     <div className={styles.container}>
+      {showSuccess && (
+        <div className={styles.successPopup}>
+          <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> 投稿が作成されました！
+        </div>
+      )}
       <h1 className={styles.title}>🆕 新規投稿</h1>
 
       <textarea
