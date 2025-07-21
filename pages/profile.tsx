@@ -62,19 +62,25 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
       <div className={styles.cardWrapper}>
         <h1 className={styles.heading}>💋プロフィール</h1>
         <div className={styles.formGroup}>
-          <label className={styles.label}>ユーザー名：</label>
-          <input
-            className={styles.input}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="ももんが"
-            maxLength={8}
-          />
-          <p className={username.length >= 8 ? styles.charCountLimit : styles.charCount}>
-            {username.length}/8文字
-          </p>
-          <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
-          <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
+          {session ? (
+            <>
+              <label className={styles.label}>ユーザー名：</label>
+              <input
+                className={styles.input}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="ももんが"
+                maxLength={8}
+              />
+              <p className={username.length >= 8 ? styles.charCountLimit : styles.charCount}>
+                {username.length}/8文字
+              </p>
+              <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
+              <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
+            </>
+          ) : (
+            <p className={styles.notLoggedInMsg}>ログインするとユーザー名を設定できます。</p>
+          )}
           <div className={styles.themeToggleWrapper}>
             <span className={styles.themeLabel}>テーマ切り替え:</span>
             <button onClick={toggleTheme} className={styles.themeToggleButton}>

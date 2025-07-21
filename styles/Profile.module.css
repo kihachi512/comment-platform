@@ -209,6 +209,13 @@ body.dark-mode .themeToggleButton {
   color: #fff;
 }
 
+.notLoggedInMsg {
+  color: var(--subtle-text-color);
+  font-size: 1rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
   10% { opacity: 1; transform: translateX(-50%) translateY(0); }
