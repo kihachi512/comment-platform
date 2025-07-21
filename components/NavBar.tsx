@@ -1,8 +1,10 @@
 // components/NavBar.tsx
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/NavBar.module.css";
 
 export default function NavBar() {
+  const { data: session } = useSession();
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
@@ -22,6 +24,19 @@ export default function NavBar() {
           <button className={styles.aboutButton}>サービス概要</button>
         </Link>
       </nav>
+      <div className={styles.userArea}>
+        {session ? (
+          <>
+            <span className={styles.userName}>{session.user?.name || "ユーザー"}</span>
+            {session.user?.userId && (
+              <span className={styles.userId}>#{session.user.userId}</span>
+            )}
+            <button className={styles.logoutButton} onClick={() => signOut()}>ログアウト</button>
+          </>
+        ) : (
+          <button className={styles.loginButton} onClick={() => signIn("google")}>Googleでログイン</button>
+        )}
+      </div>
     </header>
   );
 }
