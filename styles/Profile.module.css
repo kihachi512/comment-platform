@@ -121,6 +121,48 @@
   flex-direction: column;
   align-items: center;
 }
+.heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.formGroup {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 1.08rem;
+  margin-bottom: 12px;
+}
+.userId {
+  font-size: 0.98rem;
+  color: #6b7280;
+  margin: 8px 0 18px 0;
+  font-family: monospace;
+  text-align: left;
+  width: 100%;
+}
+.button {
+  display: block;
+  margin: 0 auto;
+}
 
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
