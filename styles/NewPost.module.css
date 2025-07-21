@@ -110,3 +110,15 @@
   gap: 10px;
   animation: fadeInOut 2s;
 }
+
+.cardWrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fffefc;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 40px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

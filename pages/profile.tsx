@@ -50,22 +50,24 @@ export default function ProfilePage() {
           <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> ユーザー名を更新しました！
         </div>
       )}
-      <h1 className={styles.heading}>💋プロフィール</h1>
-      <div className={styles.formGroup}>
-        <label className={styles.label}>ユーザー名：</label>
-        <input
-          className={styles.input}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="ももんが"
-        />
-        <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
-        <button className={styles.button} onClick={saveUsername}>保存</button>
-        {showError && (
-          <div className={styles.errorPopup}>
-            <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
-          </div>
-        )}
+      <div className={styles.cardWrapper}>
+        <h1 className={styles.heading}>💋プロフィール</h1>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>ユーザー名：</label>
+          <input
+            className={styles.input}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="ももんが"
+          />
+          <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
+          <button className={styles.button} onClick={saveUsername}>保存</button>
+          {showError && (
+            <div className={styles.errorPopup}>
+              <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -69,26 +69,24 @@ export default function NewPostPage() {
           <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
         </div>
       )}
-      <h1 className={styles.title}>🆕 新規投稿</h1>
-
-      <textarea
-        className={styles.textarea}
-        rows={4}
-        placeholder="本文"
-        value={form.body}
-        onChange={(e) => setForm({ ...form, body: e.target.value })}
-      />
-      <p className={styles.charCount}>{form.body.length}/50文字</p>
-
-      {/* 通常のエラー表示はポップアップに統一 */}
-
-      <button
-        className={styles.submitButton}
-        onClick={submit}
-        disabled={form.body.length > 50}
-      >
-        投稿する
-      </button>
+      <div className={styles.cardWrapper}>
+        <h1 className={styles.title}>🆕 新規投稿</h1>
+        <textarea
+          className={styles.textarea}
+          rows={4}
+          placeholder="本文"
+          value={form.body}
+          onChange={(e) => setForm({ ...form, body: e.target.value })}
+        />
+        <p className={styles.charCount}>{form.body.length}/50文字</p>
+        <button
+          className={styles.submitButton}
+          onClick={submit}
+          disabled={form.body.length > 50}
+        >
+          投稿する
+        </button>
+      </div>
     </div>
   );
 }
