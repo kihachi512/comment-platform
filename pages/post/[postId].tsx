@@ -96,7 +96,11 @@ export default function PostDetail() {
 
   return (
     <div className={styles.container}>
-      <Link href="/" className={styles.backLink}>← 投稿一覧</Link>
+
+      <div className={styles.header}>
+        <button className={styles.backButton} onClick={() => router.push("/")}>← 投稿一覧へ戻る</button>
+        <h1 className={styles.pageTitle}>投稿詳細</h1>
+      </div>
 
       <section className={styles.postCard}>
         <h1 className={styles.postBody}>📝 {post.body}</h1>
