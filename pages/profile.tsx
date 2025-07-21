@@ -6,7 +6,8 @@ export default function ProfilePage() {
   const { data: session } = useSession();
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
-  const [message, setMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -20,6 +21,7 @@ export default function ProfilePage() {
   }, [session]);
 
   const saveUsername = async () => {
+    setError("");
     const res = await fetch("/api/profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,9 +29,10 @@ export default function ProfilePage() {
     });
 
     if (res.ok) {
-      setMessage("ユーザー名を更新しました！");
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 1800);
     } else {
-      setMessage("更新に失敗しました。");
+      setError("更新に失敗しました。");
     }
   };
 
@@ -39,6 +42,11 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.container}>
+      {showSuccess && (
+        <div className={styles.successPopup}>
+          <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> ユーザー名を更新しました！
+        </div>
+      )}
       <h1 className={styles.heading}>💋プロフィール</h1>
       <div className={styles.formGroup}>
         <label className={styles.label}>ユーザー名：</label>
@@ -50,7 +58,7 @@ export default function ProfilePage() {
         />
         <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
         <button className={styles.button} onClick={saveUsername}>保存</button>
-        {message && <p className={styles.success}>{message}</p>}
+        {error && <p className={styles.error}>{error}</p>}
       </div>
     </div>
   );
