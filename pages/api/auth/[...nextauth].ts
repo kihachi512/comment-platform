@@ -23,7 +23,7 @@ export const authOptions: AuthOptions = {
         email: { label: "メールアドレス", type: "email" },
         password: { label: "パスワード", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("メールアドレスとパスワードは必須です");
         }
