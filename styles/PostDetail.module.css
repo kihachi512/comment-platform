@@ -8,12 +8,36 @@
   font-family: sans-serif;
 }
 
-/* 戻るリンク */
-.backLink {
-  display: inline-block;
-  margin-bottom: 16px;
-  color: #2563eb;
-  text-decoration: underline;
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* 戻るボタン */
+.backButton {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.backButton:hover {
+  background-color: #1d4ed8;
+}
+
+/* ページタイトル */
+.pageTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #22223b;
+  margin: 0;
 }
 
 /* 投稿カード */

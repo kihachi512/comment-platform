@@ -80,11 +80,17 @@
   background-color: #fffefc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .postCard:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.postCard:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .postBody {
