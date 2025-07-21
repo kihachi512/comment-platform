@@ -113,7 +113,7 @@
 .cardWrapper {
   max-width: 480px;
   margin: 40px auto;
-  background: #fffefc;
+  background: var(--card-bg-color);
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   padding: 40px 32px 32px 32px;
@@ -146,14 +146,16 @@
 .input {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 7px;
   font-size: 1.08rem;
   margin-bottom: 12px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 .userId {
   font-size: 0.98rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   margin: 8px 0 18px 0;
   font-family: monospace;
   text-align: left;
@@ -166,14 +168,14 @@
 
 .charCount {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   text-align: right;
   width: 100%;
   margin-top: 4px;
 }
 .charCountLimit {
   composes: charCount;
-  color: #dc2626;
+  color: #ef4444;
   font-weight: bold;
 }
 

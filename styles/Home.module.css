@@ -73,7 +73,7 @@
 }
 
 .divider {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--divider-color);
   margin: 24px 0;
 }
 
@@ -85,9 +85,9 @@
 
 .postCard {
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  background-color: #fffefc;
+  background-color: var(--card-bg-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -117,7 +117,7 @@
 }
 
 .postBody {
-  color: #333;
+  color: var(--text-color);
   text-decoration: none;
   white-space: pre-wrap;
   font-size: 16px;

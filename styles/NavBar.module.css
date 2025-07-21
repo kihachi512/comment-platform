@@ -1,7 +1,7 @@
 .header {
   width: 100%;
-  background: #fff;
-  border-bottom: 1.5px solid #e5e7eb;
+  background: var(--card-bg-color);
+  border-bottom: 1.5px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,13 +27,13 @@
   font-size: 2.1rem;
   font-weight: 900;
   letter-spacing: 0.04em;
-  color: #22223b;
+  color: var(--text-color);
   text-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .logoSub {
   font-family: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
   font-size: 1.05rem;
-  color: #6b7280;
+  color: var(--subtle-text-color);
   font-weight: 500;
   margin-top: 2px;
   margin-left: 2px;
@@ -56,11 +56,11 @@
 }
 .userName {
   font-weight: bold;
-  color: #22223b;
+  color: var(--text-color);
   font-size: 1rem;
 }
 .userId {
-  color: #6b7280;
+  color: var(--subtle-text-color);
   font-size: 0.95rem;
   margin-left: 2px;
 }
@@ -117,6 +117,25 @@
 }
 .logoutButton:hover {
   background: linear-gradient(90deg, #374151 60%, #6b7280 100%);
+}
+.themeToggleWrapper {
+  position: absolute;
+  left: 24px;
+}
+.themeToggleButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+.themeToggleButton:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+body.dark-mode .themeToggleButton:hover {
+  background-color: rgba(255,255,255,0.1);
 }
 
 @media (max-width: 600px) {
