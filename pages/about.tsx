@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className={styles.container}>
       <div className={styles.cardWrapper}>
-        <h1 className={styles.title}>サービス概要</h1>
+        <h1 className={styles.title}>💡サービス概要</h1>
         <p className={styles.description}>
           <b>Textories</b>は、<b>投稿が1時間で自動的に見えなくなる</b>新感覚のメッセージサービスです。
         </p>
