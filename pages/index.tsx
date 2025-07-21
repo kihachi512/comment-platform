@@ -67,6 +67,9 @@ export default function Home() {
           <Link href="/profile">
             <button className={styles.profileButton}>プロフィール設定</button>
           </Link>
+          <Link href="/about">
+            <button className={styles.profileButton} style={{ background: '#059669' }}>サービス概要</button>
+          </Link>
         </div>
       )}
 
