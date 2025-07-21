@@ -39,8 +39,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <NavBar />
-
       <hr className={styles.divider} />
 
       {/* 投稿一覧 */}
