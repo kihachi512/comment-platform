@@ -39,39 +39,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      {/* ヘッダー下のログイン・ボタン群 */}
-      <div className={styles.header}>
-        {!session ? (
-          <button className={styles.loginButton} onClick={() => signIn("google")}> 
-            Googleでログイン
-          </button>
-        ) : (
-          <div className={styles.userInfo}>
-            <div>
-              {username} さん{" "}
-              {userId && <span className={styles.userId}>#{userId}</span>}
-            </div>
-            <button className={styles.logoutButton} onClick={() => signOut()}>
-              ログアウト
-            </button>
-          </div>
-        )}
-      </div>
-      <div className={styles.actions}>
-        {session && (
-          <>
-            <Link href="/new">
-              <button className={styles.newPostButton}>新規投稿</button>
-            </Link>
-            <Link href="/profile">
-              <button className={styles.profileButton}>プロフィール設定</button>
-            </Link>
-          </>
-        )}
-        <Link href="/about">
-          <button className={styles.aboutButton}>サービス概要</button>
-        </Link>
-      </div>
+      <NavBar />
 
       <hr className={styles.divider} />
 

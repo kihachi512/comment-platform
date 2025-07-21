@@ -8,6 +8,7 @@
   padding: 24px 0 18px 0;
   margin-bottom: 24px;
   box-sizing: border-box;
+  position: relative;
 }
 .logoWrapper {
   flex: 1;
@@ -44,4 +45,50 @@
   gap: 16px;
   margin-left: auto;
   margin-right: 24px;
+}
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+  justify-content: flex-end;
+  margin-right: 24px;
+}
+.userName {
+  font-weight: bold;
+  color: #22223b;
+  font-size: 1rem;
+}
+.userId {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-left: 2px;
+}
+.loginButton {
+  background-color: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.loginButton:hover {
+  background-color: #2563eb;
+}
+.logoutButton {
+  background-color: #6b7280;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.logoutButton:hover {
+  background-color: #374151;
 }
