@@ -1,10 +1,12 @@
 // pages/api/auth/[...nextauth].ts
 import NextAuth, { AuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { customAlphabet } from "nanoid";
+import bcrypt from "bcryptjs";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);
@@ -14,6 +16,37 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    CredentialsProvider({
+      name: "メールアドレスとパスワード",
+      credentials: {
+        email: { label: "メールアドレス", type: "email" },
+        password: { label: "パスワード", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("メールアドレスとパスワードは必須です");
+        }
+        // DynamoDBからユーザー取得
+        const result = await client.send(
+          new GetItemCommand({
+            TableName: "Users",
+            Key: { email: { S: credentials.email } },
+          })
+        );
+        if (!result.Item) {
+          throw new Error("ユーザーが見つかりません");
+        }
+        const user = unmarshall(result.Item);
+        if (!user.password) {
+          throw new Error("このアカウントはGoogle認証専用です");
+        }
+        const isValid = await bcrypt.compare(credentials.password, user.password);
+        if (!isValid) {
+          throw new Error("パスワードが違います");
+        }
+        return { id: user.userId, email: user.email, username: user.username };
+      },
     }),
   ],
   callbacks: {

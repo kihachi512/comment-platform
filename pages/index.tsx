@@ -42,9 +42,17 @@ export default function Home() {
       <div className={styles.header}>
         <h1 className={styles.title}>Textories〈 A note that only lasts for one hour 〉</h1>
         {!session ? (
-          <button className={styles.loginButton} onClick={() => signIn("google")}>
-            Googleでログイン
-          </button>
+          <>
+            <button className={styles.loginButton} onClick={() => signIn("google")}> 
+              Googleでログイン
+            </button>
+            <button className={styles.loginButton} style={{ background: "#059669", marginTop: 8 }} onClick={() => window.location.href = "/login"}>
+              メールでログイン
+            </button>
+            <div style={{ marginTop: 8 }}>
+              <a href="/signup" style={{ color: "#2563eb", textDecoration: "underline" }}>アカウント新規作成</a>
+            </div>
+          </>
         ) : (
           <div className={styles.userInfo}>
             <div>
