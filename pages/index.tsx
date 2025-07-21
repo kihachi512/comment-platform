@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
-  const [posts, setPosts] = useState<{ postId: string; body: string }[]>([]);
+  const [posts, setPosts] = useState<{ postId: string; body: string; commentCount: number }[]>([]);
   const { data: session } = useSession();
   const [username, setUsername] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
@@ -46,6 +46,9 @@ export default function Home() {
           <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
             <div className={styles.postCard} tabIndex={0} role="button">
               <span className={styles.postBody}>{post.body}</span>
+              <span className={styles.commentCount}>
+                💬 {post.commentCount}
+              </span>
             </div>
           </Link>
         ))}

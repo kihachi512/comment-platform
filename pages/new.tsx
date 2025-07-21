@@ -79,7 +79,7 @@ export default function NewPostPage() {
           onChange={(e) => setForm({ ...form, body: e.target.value })}
           maxLength={50}
         />
-        <p className={form.body.length === 50 ? styles.charCountLimit : styles.charCount}>
+        <p className={form.body.length >= 50 ? styles.charCountLimit : styles.charCount}>
           {form.body.length}/50文字
         </p>
         <button

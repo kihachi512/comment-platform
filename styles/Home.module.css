@@ -91,6 +91,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.commentCount {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-left: 20px;
+  background: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 20px;
 }
 
 .postCard:hover {

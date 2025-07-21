@@ -70,7 +70,7 @@ export default function ProfilePage() {
             placeholder="ももんが"
             maxLength={8}
           />
-          <p className={username.length === 8 ? styles.charCountLimit : styles.charCount}>
+          <p className={username.length >= 8 ? styles.charCountLimit : styles.charCount}>
             {username.length}/8文字
           </p>
           <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
