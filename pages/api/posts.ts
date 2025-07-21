@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 各投稿のコメント数を取得
     const postsWithCommentCount = await Promise.all(
-      posts.map(async (post) => {
+      posts.map(async (post: any) => {
         const commentResult = await client.send(
           new QueryCommand({
             TableName: "Comments",
