@@ -20,13 +20,15 @@
 .loginButton,
 .logoutButton,
 .newPostButton,
-.profileButton {
+.profileButton,
+.aboutButton {
   padding: 8px 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   color: white;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .loginButton {
@@ -47,13 +49,6 @@
 
 .aboutButton {
   background-color: #f59e42;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
   transition: background 0.2s;
 }
 .aboutButton:hover {
