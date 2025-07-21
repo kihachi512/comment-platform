@@ -18,38 +18,52 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: any }) {
-      if (user?.email) {
-        const email = user.email;
-        try {
-          const result = await client.send(
-            new GetItemCommand({
+    async jwt({ token, user, trigger }) {
+      // 初回ログイン時
+      if (user) {
+        const email = user.email!;
+        const result = await client.send(
+          new GetItemCommand({
+            TableName: "Users",
+            Key: { email: { S: email } },
+          })
+        );
+
+        if (result.Item) {
+          const userData = unmarshall(result.Item);
+          token.userId = userData.userId;
+          token.username = userData.username;
+        } else {
+          // 新規ユーザー作成
+          const newUserId = nanoid();
+          await client.send(
+            new PutItemCommand({
               TableName: "Users",
-              Key: { email: { S: email } },
+              Item: {
+                email: { S: email },
+                username: { S: user.name ?? "" },
+                userId: { S: newUserId },
+              },
             })
           );
+          token.userId = newUserId;
+          token.username = user.name ?? "";
+        }
+      }
 
-          if (result.Item) {
-            const userData = unmarshall(result.Item);
-            token.userId = userData.userId;
-            token.username = userData.username;
-          } else {
-            const newUserId = nanoid();
-            await client.send(
-              new PutItemCommand({
-                TableName: "Users",
-                Item: {
-                  email: { S: email },
-                  username: { S: user.name ?? "" },
-                  userId: { S: newUserId },
-                },
-              })
-            );
-            token.userId = newUserId;
-            token.username = user.name ?? "";
-          }
-        } catch (err) {
-          console.error("JWT callback error:", err);
+      // プロフィール更新時
+      if (trigger === "update") {
+        const email = token.email!;
+        const result = await client.send(
+          new GetItemCommand({
+            TableName: "Users",
+            Key: { email: { S: email } },
+          })
+        );
+        if (result.Item) {
+          const userData = unmarshall(result.Item);
+          token.username = userData.username;
+          token.name = userData.username;
         }
       }
       return token;
@@ -58,6 +72,7 @@ export const authOptions: AuthOptions = {
     async session({ session, token }: { session: Session; token: JWT }) {
       session.user.userId = token.userId as string;
       session.user.username = token.username as string;
+      session.user.name = token.username as string;
       return session;
     },
   },
