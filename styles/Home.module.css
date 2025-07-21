@@ -45,6 +45,21 @@
   background-color: #2563eb;
 }
 
+.aboutButton {
+  background-color: #f59e42;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.aboutButton:hover {
+  background-color: #e07c1b;
+}
+
 .userInfo {
   text-align: right;
   font-size: 14px;
