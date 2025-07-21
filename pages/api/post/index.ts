@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { postId, body, authorId, authorName } = req.body;
 
   if (!postId || !body) {
-    return res.status(400).json({ error: "postIdとbodyは必須です" });
+    return res.status(400).json({ error: "本文内容は必須です" });
   }
 
   try {

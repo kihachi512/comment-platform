@@ -98,7 +98,6 @@ export default function PostDetail() {
     <div className={styles.container}>
 
       <div className={styles.header}>
-        <button className={styles.backButton} onClick={() => router.push("/")}>← 投稿一覧へ戻る</button>
         <h1 className={styles.pageTitle}>投稿詳細</h1>
       </div>
 
