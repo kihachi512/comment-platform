@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 
-export default function ProfilePage() {
+export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) {
   const { data: session, update } = useSession();
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
@@ -75,6 +75,12 @@ export default function ProfilePage() {
           </p>
           <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
           <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
+          <div className={styles.themeToggleWrapper}>
+            <span className={styles.themeLabel}>テーマ切り替え:</span>
+            <button onClick={toggleTheme} className={styles.themeToggleButton}>
+              {theme === 'light' ? '🌙 ダーク' : '☀️ ライト'}
+            </button>
+          </div>
           {showError && (
             <div className={styles.errorPopup}>
               <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
