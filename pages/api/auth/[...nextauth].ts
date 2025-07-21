@@ -25,7 +25,7 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("メールアドレスとパスワードは必須です");
+          return null;
         }
         // DynamoDBからユーザー取得
         const result = await client.send(
@@ -35,15 +35,15 @@ export const authOptions: AuthOptions = {
           })
         );
         if (!result.Item) {
-          throw new Error("ユーザーが見つかりません");
+          return null;
         }
         const user = unmarshall(result.Item);
         if (!user.password) {
-          throw new Error("このアカウントはGoogle認証専用です");
+          return null;
         }
         const isValid = await bcrypt.compare(credentials.password, user.password);
         if (!isValid) {
-          throw new Error("パスワードが違います");
+          return null;
         }
         return { id: user.userId, email: user.email, username: user.username };
       },
