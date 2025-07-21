@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className={styles.container}>
       <div className={styles.postCard} style={{ maxWidth: 600, margin: "40px auto", padding: 32 }}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: 16 }}>サービス概要</h1>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: 16 }}>💡サービス概要</h1>
         <p style={{ fontSize: "1.1rem", marginBottom: 20 }}>
           <b>Textories</b>は、<b>投稿が1時間で自動的に見えなくなる</b>新感覚のメッセージサービスです。
         </p>
