@@ -3,12 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import styles from "../styles/NewPost.module.css";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function NewPostPage() {
   const [form, setForm] = useState({ body: "" });
   const { data: session, status } = useSession();
   const router = useRouter();
   const [error, setError] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const submit = async () => {
     setError("");
@@ -36,8 +38,11 @@ export default function NewPostPage() {
 
     if (res.ok) {
       setForm({ body: "" });
-      alert("投稿を作成しました！");
-      router.push("/");
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        router.push("/");
+      }, 1800);
     } else {
       const data = await res.json();
       setError(data?.error || "投稿に失敗しました。");
@@ -50,6 +55,11 @@ export default function NewPostPage() {
 
   return (
     <div className={styles.container}>
+      {showSuccess && (
+        <div className={styles.successPopup}>
+          <FaCheckCircle size={22} style={{ flexShrink: 0 }} /> 投稿が作成されました！
+        </div>
+      )}
       <h1 className={styles.title}>🆕 新規投稿</h1>
 
       <textarea
