@@ -19,7 +19,7 @@ export default function About() {
           「今この瞬間」だけのメッセージ体験をお楽しみください。
         </p>
         <Link href="/">
-          <button className={styles.profileButton} style={{ background: '#2563eb' }}>← トップページへ戻る</button>
+          <button className={styles.profileButton}>← トップページへ戻る</button>
         </Link>
       </div>
     </div>
