@@ -59,32 +59,25 @@ export default function Home() {
       </div>
 
       {/* 操作ボタン */}
-      {session && (
-        <div className={styles.actions}>
-          <Link href="/new">
-            <button className={styles.newPostButton}>新規投稿</button>
-          </Link>
-          <Link href="/profile">
-            <button className={styles.profileButton}>プロフィール設定</button>
-          </Link>
-          <Link href="/about">
-            <button className={styles.profileButton} style={{ background: '#059669' }}>サービス概要</button>
-          </Link>
-        </div>
-      )}
+      <div className={styles.actions}>
+        {session && (
+          <>
+            <Link href="/new">
+              <button className={styles.newPostButton}>新規投稿</button>
+            </Link>
+            <Link href="/profile">
+              <button className={styles.profileButton}>プロフィール設定</button>
+            </Link>
+          </>
+        )}
+        <Link href="/about">
+          <button className={styles.profileButton} style={{ background: '#059669' }}>サービス概要</button>
+        </Link>
+      </div>
 
       <hr className={styles.divider} />
 
       {/* 投稿一覧 */}
       <div className={styles.postList}>
         {posts.map((post) => (
-          <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
-            <div className={styles.postCard} tabIndex={0} role="button">
-              <span className={styles.postBody}>{post.body}</span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+          <Link key={post.postId} href={`
