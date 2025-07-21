@@ -77,6 +77,7 @@ export default function NewPostPage() {
           placeholder="本文"
           value={form.body}
           onChange={(e) => setForm({ ...form, body: e.target.value })}
+          maxLength={50}
         />
         <p className={styles.charCount}>{form.body.length}/50文字</p>
         <button
