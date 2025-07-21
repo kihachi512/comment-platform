@@ -8,6 +8,7 @@ export default function ProfilePage() {
   const [userId, setUserId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -33,6 +34,8 @@ export default function ProfilePage() {
       setTimeout(() => setShowSuccess(false), 1800);
     } else {
       setError("更新に失敗しました。");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 1800);
     }
   };
 
@@ -58,7 +61,11 @@ export default function ProfilePage() {
         />
         <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
         <button className={styles.button} onClick={saveUsername}>保存</button>
-        {error && <p className={styles.error}>{error}</p>}
+        {showError && (
+          <div className={styles.errorPopup}>
+            <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
+          </div>
+        )}
       </div>
     </div>
   );

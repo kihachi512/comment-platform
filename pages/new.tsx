@@ -9,6 +9,7 @@ export default function NewPostPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const submit = async () => {
@@ -21,6 +22,8 @@ export default function NewPostPage() {
 
     if (form.body.length > 50) {
       setError("本文は50文字以内で入力してください。");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 1800);
       return;
     }
 
@@ -45,6 +48,8 @@ export default function NewPostPage() {
     } else {
       const data = await res.json();
       setError(data?.error || "投稿に失敗しました。");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 1800);
     }
   };
 
@@ -59,6 +64,11 @@ export default function NewPostPage() {
           <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> 投稿が作成されました！
         </div>
       )}
+      {showError && (
+        <div className={styles.errorPopup}>
+          <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
+        </div>
+      )}
       <h1 className={styles.title}>🆕 新規投稿</h1>
 
       <textarea
@@ -70,7 +80,7 @@ export default function NewPostPage() {
       />
       <p className={styles.charCount}>{form.body.length}/50文字</p>
 
-      {error && <p className={styles.error}>{error}</p>}
+      {/* 通常のエラー表示はポップアップに統一 */}
 
       <button
         className={styles.submitButton}
