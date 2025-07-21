@@ -41,7 +41,6 @@ export default function Home() {
     <div className={styles.container}>
       {/* ヘッダー下のログイン・ボタン群 */}
       <div className={styles.header}>
-        <h1 className={styles.title}>Textories〈 A note that only lasts for one hour 〉</h1>
         {!session ? (
           <button className={styles.loginButton} onClick={() => signIn("google")}> 
             Googleでログイン
