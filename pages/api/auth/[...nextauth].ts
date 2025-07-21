@@ -1,7 +1,6 @@
 // pages/api/auth/[...nextauth].ts
 import NextAuth, { AuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
@@ -16,37 +15,6 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    CredentialsProvider({
-      name: "メールアドレスとパスワード",
-      credentials: {
-        email: { label: "メールアドレス", type: "email" },
-        password: { label: "パスワード", type: "password" },
-      },
-      async authorize(credentials, req) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-        // DynamoDBからユーザー取得
-        const result = await client.send(
-          new GetItemCommand({
-            TableName: "Users",
-            Key: { email: { S: credentials.email } },
-          })
-        );
-        if (!result.Item) {
-          return null;
-        }
-        const user = unmarshall(result.Item);
-        if (!user.password) {
-          return null;
-        }
-        const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) {
-          return null;
-        }
-        return { id: user.userId, email: user.email, username: user.username };
-      },
     }),
   ],
   callbacks: {
