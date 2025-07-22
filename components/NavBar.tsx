@@ -10,17 +10,17 @@ export default function NavBar() {
   return (
     <header className={styles.header}>
       <div className={styles.logoRow}>
+        <button className={styles.hamburger} onClick={() => setMenuOpen(true)}>
+          <span className={styles.hamburgerIcon} />
+          <span className={styles.hamburgerIcon} />
+          <span className={styles.hamburgerIcon} />
+        </button>
         <div className={styles.logoWrapper}>
           <Link href="/" className={styles.logo}>
             <span className={styles.logoMain}>Textories</span>
             <span className={styles.logoSub}>〈 A note that only lasts for one hour 〉</span>
           </Link>
         </div>
-        <button className={styles.hamburger} onClick={() => setMenuOpen(true)}>
-          <span className={styles.hamburgerIcon} />
-          <span className={styles.hamburgerIcon} />
-          <span className={styles.hamburgerIcon} />
-        </button>
       </div>
       <div className={styles.navRow}>
         <nav className={styles.nav}>
