@@ -23,7 +23,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
     }
   }, [session]);
 
-  // 自分の投稿（過去24時間分のみ）を取得
+  /*// 自分の投稿（過去24時間分のみ）を取得
   useEffect(() => {
     if (!userId) return;
     fetch("/api/posts")
@@ -40,6 +40,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         setMyPosts(filtered);
       });
   }, [userId]);
+  */
 
   const saveUsername = async () => {
     setError("");
