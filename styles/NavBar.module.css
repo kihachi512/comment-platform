@@ -138,6 +138,96 @@ body.dark-mode .themeToggleButton:hover {
   background-color: rgba(255,255,255,0.1);
 }
 
+.desktopNav {
+  display: flex;
+  gap: 12px;
+}
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 8px;
+}
+.hamburgerIcon {
+  width: 28px;
+  height: 3px;
+  background: var(--subtle-text-color);
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.mobileMenu {
+  display: none;
+}
+.userAreaMobile {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.listButton {
+  background: linear-gradient(90deg, #6b7280 60%, #9ca3af 100%);
+  color: #fff;
+  min-width: 120px;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  margin: 0 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  position: relative;
+  top: 0;
+}
+.listButton:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.listButton:hover {
+  background: linear-gradient(90deg, #9ca3af 60%, #6b7280 100%);
+}
+.newPostButton, .profileButton, .aboutButton {
+  min-width: 120px;
+}
+@media (max-width: 800px) {
+  .desktopNav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background: var(--card-bg-color);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    z-index: 100;
+    padding: 24px 0 16px 0;
+    gap: 12px;
+    align-items: center;
+  }
+  .mobileMenu button {
+    width: 90vw;
+    max-width: 340px;
+    font-size: 1.1rem;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
