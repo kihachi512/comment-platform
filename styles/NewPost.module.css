@@ -156,6 +156,14 @@
   margin: 0 auto;
 }
 
+.anonymousNote {
+  color: #ef4444;
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 8px;

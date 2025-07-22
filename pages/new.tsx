@@ -15,11 +15,6 @@ export default function NewPostPage() {
   const submit = async () => {
     setError("");
 
-    if (!session?.user?.userId) {
-      alert("投稿にはログインが必要です。");
-      return;
-    }
-
     if (form.body.length > 50) {
       setError("本文は50文字以内で入力してください。");
       setShowError(true);
@@ -33,8 +28,9 @@ export default function NewPostPage() {
       body: JSON.stringify({
         postId: uuidv4(),
         body: form.body,
-        authorId: session.user.userId,
-        authorName: session.user.username,
+        ...(session?.user?.userId
+          ? { authorId: session.user.userId, authorName: session.user.username }
+          : { authorName: "匿名ユーザー" }),
       }),
     });
 
@@ -68,6 +64,9 @@ export default function NewPostPage() {
         <div className={styles.errorPopup}>
           <span style={{ fontSize: 22, flexShrink: 0 }}>❌</span> {error}
         </div>
+      )}
+      {!session && (
+        <p className={styles.anonymousNote}>※ ログインしていない場合は匿名ユーザーとして投稿されます</p>
       )}
       <div className={styles.cardWrapper}>
         <h1 className={styles.title}>🆕 新規投稿</h1>
