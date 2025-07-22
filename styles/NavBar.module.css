@@ -142,34 +142,9 @@ body.dark-mode .themeToggleButton:hover {
   display: flex;
   gap: 12px;
 }
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 8px;
-  margin-left: 8px;
-}
-.hamburgerIcon {
-  width: 28px;
-  height: 3px;
-  background: var(--subtle-text-color);
-  margin: 4px 0;
-  border-radius: 2px;
-  transition: background 0.2s;
-}
-.mobileMenu {
-  display: none;
-}
-.userAreaMobile {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+/* Remove hamburger/drawer/mobileMenu styles */
+.drawerOverlay, .drawerMenu, .drawerClose, .userAreaMobile, .hamburger, .hamburgerIcon, .mobileMenu {
+  display: none !important;
 }
 .listButton {
   background: linear-gradient(90deg, #6b7280 60%, #9ca3af 100%);
@@ -242,30 +217,11 @@ body.dark-mode .themeToggleButton:hover {
 }
 @media (max-width: 800px) {
   .desktopNav {
-    display: none;
-  }
-  .hamburger {
     display: flex;
-  }
-  .mobileMenu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    background: var(--card-bg-color);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-    z-index: 100;
-    padding: 24px 0 16px 0;
-    gap: 12px;
-    align-items: center;
-  }
-  .mobileMenu button {
-    width: 90vw;
-    max-width: 340px;
-    font-size: 1.1rem;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
   }
 }
 
