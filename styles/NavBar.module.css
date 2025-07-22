@@ -288,6 +288,7 @@ body.dark-mode .themeToggleButton:hover {
   .userName, .userId {
     font-size: 0.98rem;
     text-align: center;
+    margin: 8px 0;
   }
   .loginButton, .logoutButton {
     width: 100%;
