@@ -66,7 +66,7 @@ export default function NewPostPage() {
         </div>
       )}
       {!session && (
-        <p className={styles.anonymousNote}>※ ログインしていない場合は匿名ユーザーとして投稿されます</p>
+        <p className={styles.anonymousNote}>※ 未ログインの場合は匿名で投稿されます</p>
       )}
       <div className={styles.cardWrapper}>
         <h1 className={styles.title}>🆕 新規投稿</h1>

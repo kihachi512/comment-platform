@@ -261,10 +261,10 @@ body.dark-mode .themeToggleButton:hover {
     justify-content: center;
   }
   .logoMain {
-    font-size: 1.7rem;
+    font-size: 2.0rem;
   }
   .logoSub {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
   }
   .nav {
     flex-direction: column;
