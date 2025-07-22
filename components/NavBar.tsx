@@ -2,11 +2,10 @@
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/NavBar.module.css";
-import { useState } from "react";
+import { MdHome, MdAddBox, MdPerson, MdInfo } from "react-icons/md";
 
 export default function NavBar() {
   const { data: session } = useSession();
-  // ハンバーガーメニュー廃止
   return (
     <header className={styles.header}>
       <div className={styles.logoRow}>
@@ -47,6 +46,35 @@ export default function NavBar() {
             <button className={styles.loginButton} onClick={() => signIn("google")}>Googleでログイン</button>
           )}
         </div>
+      </div>
+      {/* --- ボトムナビ（スマホのみ表示） --- */}
+      <div className={styles.bottomNavWrapper}>
+        {session && (
+          <div className={styles.bottomUserName}>
+            <span className={styles.userName}>{session.user?.username || session.user?.name || "ユーザー"}</span>
+            {session.user?.userId && (
+              <span className={styles.userId}>#{session.user.userId}</span>
+            )}
+          </div>
+        )}
+        <nav className={styles.bottomNav}>
+          <Link href="/" className={styles.bottomNavItem}>
+            <MdHome size={26} />
+            <span>一覧</span>
+          </Link>
+          <Link href="/new" className={styles.bottomNavItem}>
+            <MdAddBox size={26} />
+            <span>新規</span>
+          </Link>
+          <Link href="/profile" className={styles.bottomNavItem}>
+            <MdPerson size={26} />
+            <span>プロフィール</span>
+          </Link>
+          <Link href="/about" className={styles.bottomNavItem}>
+            <MdInfo size={26} />
+            <span>概要</span>
+          </Link>
+        </nav>
       </div>
     </header>
   );
