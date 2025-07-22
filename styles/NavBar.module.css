@@ -282,6 +282,8 @@ body.dark-mode .themeToggleButton:hover {
     min-width: 0;
     margin: 0;
     gap: 6px;
+    justify-content: center;
+    text-align: center;
   }
   .userName, .userId {
     font-size: 0.98rem;
