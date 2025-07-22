@@ -77,7 +77,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         </div>
       )}
       <div className={styles.cardWrapper}>
-        <h1 className={styles.heading}>🧑‍💻マイページ</h1>
+        <h1 className={styles.heading}>💻マイページ</h1>
         <div className={styles.formGroup}>
           {session ? (
             <>
