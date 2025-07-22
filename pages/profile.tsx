@@ -48,10 +48,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
     }
   };
 
-  if (!session) {
-    return <div className={styles.message}>ログインが必要です。</div>;
-  }
-
   return (
     <div className={styles.container}>
       {showSuccess && (
