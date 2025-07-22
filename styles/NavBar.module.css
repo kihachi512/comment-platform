@@ -311,5 +311,69 @@ body.dark-mode .themeToggleButton:hover {
     padding: 14px 0;
     border-radius: 10px;
   }
-  /* navRow, desktopNav, userAreaは常に表示 */
+  .bottomNavWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: none;
+    pointer-events: none;
+  }
+  .bottomUserName {
+    width: 100vw;
+    background: var(--card-bg-color);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: var(--text-color);
+    padding: 10px 0 2px 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+    pointer-events: auto;
+  }
+  .bottomNav {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--card-bg-color);
+    border-top: 1.5px solid var(--border-color);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+    padding: 2px 0 4px 0;
+    position: relative;
+    pointer-events: auto;
+  }
+  .bottomNavItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--subtle-text-color);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    flex: 1 1 0;
+    padding: 6px 0 2px 0;
+    transition: color 0.18s;
+    border-radius: 8px;
+  }
+  .bottomNavItem:active, .bottomNavItem:hover {
+    color: var(--text-color);
+    background: rgba(0,0,0,0.04);
+  }
+  .navRow, .desktopNav, .userArea {
+    display: none !important;
+  }
+  .header {
+    padding-bottom: 64px;
+  }
+}
+
+@media (min-width: 601px) {
+  .bottomNavWrapper {
+    display: none !important;
+  }
 }
