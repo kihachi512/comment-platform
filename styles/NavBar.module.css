@@ -155,9 +155,6 @@ body.dark-mode .themeToggleButton:hover {
   gap: 12px;
 }
 /* Remove hamburger/drawer/mobileMenu styles */
-.drawerOverlay, .drawerMenu, .drawerClose, .userAreaMobile, .hamburger, .hamburgerIcon, .mobileMenu {
-  display: none !important;
-}
 .listButton {
   background: linear-gradient(90deg, #6b7280 60%, #9ca3af 100%);
   color: #fff;
