@@ -199,6 +199,47 @@ body.dark-mode .themeToggleButton:hover {
 .newPostButton, .profileButton, .aboutButton {
   min-width: 120px;
 }
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.25);
+  z-index: 110;
+}
+.drawerMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 82vw;
+  max-width: 340px;
+  height: 100vh;
+  background: var(--card-bg-color);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.18);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0 16px 0;
+  gap: 18px;
+  animation: slideInDrawer 0.22s cubic-bezier(.4,0,.2,1);
+}
+.drawerClose {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: var(--subtle-text-color);
+  cursor: pointer;
+  z-index: 130;
+}
+@keyframes slideInDrawer {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
 @media (max-width: 800px) {
   .desktopNav {
     display: none;
