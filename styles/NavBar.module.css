@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 .logoMain {
-  font-family: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
   font-size: 2.1rem;
   font-weight: 900;
   letter-spacing: 0.04em;
@@ -39,7 +39,7 @@
   text-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .logoSub {
-  font-family: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
   font-size: 1.05rem;
   color: var(--subtle-text-color);
   font-weight: 500;
@@ -377,4 +377,7 @@ body.dark-mode .themeToggleButton:hover {
   .bottomNavWrapper {
     display: none !important;
   }
+}
+.nav, .desktopNav, .bottomNav, .bottomNavItem, .userArea, .userName, .userId, .nav button, .loginButton, .logoutButton, .listButton, .newPostButton, .profileButton, .aboutButton {
+  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
 }
