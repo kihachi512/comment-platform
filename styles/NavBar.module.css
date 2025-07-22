@@ -253,18 +253,18 @@ body.dark-mode .themeToggleButton:hover {
   .header {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 0 0 0;
-    margin-bottom: 0;
+    padding: 16px 0 10px 0;
+    margin-bottom: 16px;
   }
   .logoWrapper {
     margin: 0 auto;
     justify-content: center;
   }
   .logoMain {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
   .logoSub {
-    font-size: 0.85rem;
+    font-size: 1.05rem;
   }
   .nav {
     flex-direction: column;
