@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
+import Link from "next/link";
 
 export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) {
   const { data: session, update } = useSession();
@@ -9,6 +10,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
+  const [myPosts, setMyPosts] = useState<any[]>([]);
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -20,6 +22,24 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         });
     }
   }, [session]);
+
+  // 自分の投稿（過去24時間分のみ）を取得
+  useEffect(() => {
+    if (!userId) return;
+    fetch("/api/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        const now = Date.now();
+        const oneDayAgo = now - 24 * 60 * 60 * 1000;
+        const filtered = data.filter((post: any) =>
+          post.authorId === userId &&
+          new Date(post.createdAt).getTime() >= oneDayAgo
+        );
+        // 新しい順にソート
+        filtered.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setMyPosts(filtered);
+      });
+  }, [userId]);
 
   const saveUsername = async () => {
     setError("");
@@ -56,7 +76,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         </div>
       )}
       <div className={styles.cardWrapper}>
-        <h1 className={styles.heading}>💋プロフィール</h1>
+        <h1 className={styles.heading}>🧑‍💻マイページ</h1>
         <div className={styles.formGroup}>
           {session ? (
             <>
@@ -73,6 +93,24 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
               </p>
               <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
               <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
+              <div className={styles.myPostsSection}>
+                <h2 className={styles.myPostsHeading}>あなたの投稿（過去24時間分）</h2>
+                {myPosts.length === 0 ? (
+                  <p className={styles.noPostsMsg}>過去24時間以内の投稿はありません。</p>
+                ) : (
+                  <div className={styles.myPostsList}>
+                    {myPosts.map((post) => (
+                      <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
+                        <div className={styles.myPostCard} tabIndex={0} role="button">
+                          <span className={styles.myPostBody}>{post.body}</span>
+                          <span className={styles.myPostDate}>{new Date(post.createdAt).toLocaleString()}</span>
+                          <span className={styles.myPostCommentCount}>💬 {post.commentCount}</span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <p className={styles.notLoggedInMsg}>ログインするとユーザー名を設定できます。</p>
