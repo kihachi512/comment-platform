@@ -94,24 +94,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
               </p>
               <p className={styles.userId}>ユーザーID：<span className={styles.mono}>#{userId}</span></p>
               <button className={styles.button} onClick={saveUsername} disabled={username.length > 8}>保存</button>
-              <div className={styles.myPostsSection}>
-                <h2 className={styles.myPostsHeading}>あなたの投稿（過去24時間分）</h2>
-                {myPosts.length === 0 ? (
-                  <p className={styles.noPostsMsg}>過去24時間以内の投稿はありません。</p>
-                ) : (
-                  <div className={styles.myPostsList}>
-                    {myPosts.map((post) => (
-                      <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
-                        <div className={styles.myPostCard} tabIndex={0} role="button">
-                          <span className={styles.myPostBody}>{post.body}</span>
-                          <span className={styles.myPostDate}>{new Date(post.createdAt).toLocaleString()}</span>
-                          <span className={styles.myPostCommentCount}>💬 {post.commentCount}</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
             </>
           ) : (
             <p className={styles.notLoggedInMsg}>ログインするとユーザー名を設定できます。</p>
