@@ -98,11 +98,11 @@ export default function PostDetail() {
     <div className={styles.container}>
 
       <div className={styles.header}>
-        <h1 className={styles.pageTitle}>投稿詳細</h1>
+        <h1 className={styles.pageTitle}>📝投稿詳細</h1>
       </div>
 
       <section className={styles.postCard}>
-        <h1 className={styles.postBody}>📝 {post.body}</h1>
+        <h1 className={styles.postBody}>{post.body}</h1>
         {authorProfile && (
           <p className={styles.author}>投稿者: {authorProfile.username} <span className={styles.userId}>#{authorProfile.userId}</span></p>
         )}
