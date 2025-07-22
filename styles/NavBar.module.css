@@ -5,16 +5,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 0 0 0;
-  margin-bottom: 24px;
+  padding: 32px 0 0 0;
+  margin-bottom: 32px;
   box-sizing: border-box;
   position: relative;
 }
-.logoWrapper {
+.logoRow {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+.logoWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 .logo {
   display: flex;
@@ -52,11 +59,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   margin-bottom: 0;
+  padding-bottom: 16px;
 }
 .userArea {
-  margin-left: 24px;
+  margin-left: 32px;
 }
 .userName {
   font-weight: bold;
@@ -220,10 +228,15 @@ body.dark-mode .themeToggleButton:hover {
   to { transform: translateX(0); opacity: 1; }
 }
 @media (max-width: 800px) {
+  .logoRow {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
   .navRow {
-    flex-direction: column;
     gap: 0;
+    flex-direction: column;
     align-items: stretch;
+    padding-bottom: 0;
   }
   .userArea {
     margin-left: 0;
