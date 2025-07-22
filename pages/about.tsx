@@ -11,8 +11,8 @@ export default function About() {
         </p>
         <ul className={styles.list}>
           <li className={styles.listItem}>投稿は<b>1時間後に自動で非表示</b>になります。</li>
-          <li className={styles.listItem}>投稿の<b>閲覧・コメント</b>はアカウントなしでも可能です。</li>
-          <li className={styles.listItem}>投稿には<b>Googleアカウント連携によるログイン</b>が必要です。</li>
+          <li className={styles.listItem}><b>投稿・閲覧・コメント</b>はアカウントなしでも可能です。</li>
+          <li className={styles.listItem}>ユーザー名の設定には<b>Googleアカウント連携によるログイン</b>が必要です。</li>
         </ul>
         <p className={styles.subText}>
           気軽に思いを残したり、匿名でコメントしたりできる、「今この瞬間」だけのメッセージ体験をお楽しみください。
