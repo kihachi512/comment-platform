@@ -310,4 +310,71 @@ body.dark-mode .themeToggleButton:hover {
     padding: 14px 0;
     border-radius: 10px;
   }
+  .navRow, .desktopNav, .userArea {
+    display: none !important;
+  }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 8px;
+    z-index: 200;
+  }
+  .hamburgerIcon {
+    width: 28px;
+    height: 3px;
+    background: var(--subtle-text-color);
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .drawerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.25);
+    z-index: 110;
+  }
+  .drawerMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 82vw;
+    max-width: 340px;
+    height: 100vh;
+    background: var(--card-bg-color);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.18);
+    z-index: 120;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 16px 0;
+    gap: 18px;
+    animation: slideInDrawer 0.22s cubic-bezier(.4,0,.2,1);
+  }
+  .drawerClose {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: var(--subtle-text-color);
+    cursor: pointer;
+    z-index: 130;
+  }
+  .userAreaMobile {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
 }
