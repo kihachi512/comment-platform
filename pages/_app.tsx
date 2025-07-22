@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Head from "next/head";
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState("light");
@@ -39,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <NavBar />
       <Component {...pageProps} toggleTheme={toggleTheme} theme={theme} />
+      <Footer />
     </SessionProvider>
   );
 }
