@@ -216,6 +216,60 @@ body.dark-mode .themeToggleButton {
   text-align: center;
 }
 
+.myPostsSection {
+  margin-top: 32px;
+  padding: 20px 0 0 0;
+  border-top: 1px solid var(--border-color);
+}
+.myPostsHeading {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+.myPostsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.myPostCard {
+  background: var(--card-bg-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 18px 10px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, border 0.18s;
+}
+.myPostCard:hover, .myPostCard:focus {
+  border: 1.5px solid #2563eb;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+}
+.myPostBody {
+  font-size: 1.08rem;
+  color: var(--text-color);
+  margin-bottom: 2px;
+}
+.myPostDate {
+  font-size: 0.92rem;
+  color: var(--subtle-text-color);
+}
+.myPostCommentCount {
+  font-size: 0.95rem;
+  color: #2563eb;
+  font-weight: bold;
+  margin-top: 2px;
+}
+.noPostsMsg {
+  color: var(--subtle-text-color);
+  font-size: 1rem;
+  margin: 18px 0 0 0;
+  text-align: center;
+}
+
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
   10% { opacity: 1; transform: translateX(-50%) translateY(0); }

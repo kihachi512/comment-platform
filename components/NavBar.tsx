@@ -26,7 +26,7 @@ export default function NavBar() {
               <button className={styles.newPostButton}>新規投稿</button>
             </Link>
             <Link href="/profile">
-              <button className={styles.profileButton}>プロフィール設定</button>
+              <button className={styles.profileButton}>マイページ</button>
             </Link>
             <Link href="/about">
               <button className={styles.aboutButton}>サービス概要</button>
@@ -68,7 +68,7 @@ export default function NavBar() {
           </Link>
           <Link href="/profile" className={styles.bottomNavItem}>
             <MdPerson size={26} />
-            <span>プロフィール</span>
+            <span>マイページ</span>
           </Link>
           <Link href="/about" className={styles.bottomNavItem}>
             <MdInfo size={26} />
