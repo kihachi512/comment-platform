@@ -1,0 +1,97 @@
+name: Persistent Agent Tasks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 毎日午前9時（JST）に実行
+    - cron: '0 0 * * *'
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+    name: セキュリティチェック
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run security audit
+        run: npm audit --audit-level=moderate
+        
+      - name: Check for outdated packages
+        run: npm outdated || true
+
+  dependency-update:
+    runs-on: ubuntu-latest
+    name: 依存関係チェック
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Check for updates
+        run: |
+          npm update --dry-run > update-report.txt || true
+          if [ -s update-report.txt ]; then
+            echo "Updates available:"
+            cat update-report.txt
+          fi
+
+  code-quality:
+    runs-on: ubuntu-latest
+    name: コード品質チェック
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Type checking
+        run: npx tsc --noEmit
+
+  agent-health-check:
+    runs-on: ubuntu-latest
+    name: エージェント設定チェック
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Verify agent configuration
+        run: |
+          if [ ! -f ".cursorrules" ]; then
+            echo "⚠️ .cursorrules ファイルが見つかりません"
+            exit 1
+          fi
+          echo "✅ エージェント設定ファイルが存在します"
+          
+      - name: Check project structure
+        run: |
+          echo "📁 プロジェクト構造:"
+          ls -la
+          echo "📦 package.json の確認:"
+          node -p "JSON.stringify(require('./package.json'), null, 2)"

@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "agent:check": "echo '🤖 エージェント設定チェック中...' && test -f .cursorrules && echo '✅ エージェント設定OK'",
+    "agent:update": "echo '🔄 エージェント設定を更新中...' && npm run agent:check",
+    "security:audit": "npm audit --audit-level=moderate",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.830.0",

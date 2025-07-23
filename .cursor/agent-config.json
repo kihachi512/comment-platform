@@ -1,0 +1,76 @@
+{
+  "agent": {
+    "type": "persistent",
+    "name": "Comment Platform Assistant",
+    "description": "常設AIエージェント - コメントプラットフォームの開発とメンテナンスをサポート",
+    "version": "1.0.0",
+    "persistent": true,
+    "autoActivate": true,
+    "roles": [
+      "code-reviewer",
+      "security-auditor", 
+      "performance-optimizer",
+      "dependency-manager",
+      "documentation-generator"
+    ],
+    "languages": ["japanese", "english"],
+    "primaryLanguage": "japanese",
+    "projectContext": {
+      "framework": "Next.js 15.3.4",
+      "language": "TypeScript",
+      "deployment": "AWS Serverless",
+      "database": "DynamoDB",
+      "styling": "Tailwind CSS",
+      "authentication": "NextAuth.js"
+    },
+    "tasks": {
+      "onCommit": [
+        "code-review",
+        "security-check",
+        "performance-analysis"
+      ],
+      "onPullRequest": [
+        "comprehensive-review",
+        "compatibility-check",
+        "documentation-update"
+      ],
+      "scheduled": [
+        "dependency-audit",
+        "security-scan",
+        "performance-monitoring"
+      ]
+    },
+    "notifications": {
+      "critical": true,
+      "warnings": true,
+      "suggestions": false
+    },
+    "integrations": {
+      "github": true,
+      "aws": true,
+      "npm": true
+    }
+  },
+  "rules": {
+    "codeStyle": {
+      "typescript": true,
+      "eslint": true,
+      "prettier": false
+    },
+    "security": {
+      "level": "strict",
+      "scanDependencies": true,
+      "checkVulnerabilities": true
+    },
+    "performance": {
+      "monitoring": true,
+      "optimization": true,
+      "bundleAnalysis": true
+    }
+  },
+  "metadata": {
+    "createdAt": "2024-01-23T00:00:00Z",
+    "lastUpdated": "2024-01-23T00:00:00Z",
+    "version": "1.0.0"
+  }
+}
