@@ -3,23 +3,37 @@ import {
   DynamoDBClient,
   PutItemCommand,
 } from "@aws-sdk/client-dynamodb";
+import { createPostSchema, sanitizeHtml, validateSafeText } from "../../../lib/validations";
+import { validateMethod, checkRateLimit, sendErrorResponse, sendSuccessResponse } from "../../../lib/auth-helpers";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).end();
+  // HTTPメソッド検証
+  if (!validateMethod(req, res, ['POST'])) return;
 
-  const { postId, body, authorId, authorName } = req.body;
+  // レート制限チェック
+  if (!checkRateLimit(req, res, 20, 60 * 1000)) return; // 1分間に20投稿まで
 
-  if (!postId || !body) {
-    return res.status(400).json({ error: "本文内容は必須です" });
-  }
-
+  // 入力検証
   try {
-    const item: any = {
+    const validatedData = createPostSchema.parse(req.body);
+    const { postId, body, authorId, authorName } = validatedData;
+
+    // XSS攻撃チェック
+    if (!validateSafeText(body) || (authorName && !validateSafeText(authorName))) {
+      return sendErrorResponse(res, 400, "不正な文字が含まれています", "INVALID_INPUT");
+    }
+
+    try {
+      // 入力データのサニタイゼーション
+      const sanitizedBody = sanitizeHtml(body);
+      const sanitizedAuthorName = authorName ? sanitizeHtml(authorName) : "匿名ユーザー";
+
+      const item: any = {
       postId: { S: postId },
-      body: { S: body },
-      authorName: { S: authorName || "匿名ユーザー" },
+      body: { S: sanitizedBody },
+      authorName: { S: sanitizedAuthorName },
       createdAt: { S: new Date().toISOString() },
       expiresAt: {
         // DynamoDBからの物理削除: 24時間後（ストレージ節約）
@@ -39,9 +53,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Item: item,
       })
     );
-    return res.status(200).json({ ok: true });
+    
+    return sendSuccessResponse(res, { postId }, "投稿が作成されました", 201);
+    
   } catch (err) {
     console.error("投稿の保存に失敗:", err);
-    return res.status(500).json({ error: "保存エラー" });
+    return sendErrorResponse(res, 500, "投稿の保存に失敗しました", "SAVE_ERROR");
+  }
+  
+  } catch (validationError) {
+    if (validationError.errors) {
+      return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", validationError.errors);
+    }
+    return sendErrorResponse(res, 400, "不正なリクエストです", "BAD_REQUEST");
   }
 }

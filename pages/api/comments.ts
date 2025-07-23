@@ -8,15 +8,20 @@ import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { v4 as uuidv4 } from "uuid";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+import { createCommentSchema, sanitizeHtml, validateSafeText } from "../../lib/validations";
+import { checkRateLimit, sendErrorResponse, sendSuccessResponse } from "../../lib/auth-helpers";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
+    // レート制限チェック（読み取りは緩い制限）
+    if (!checkRateLimit(req, res, 200, 60 * 1000)) return;
+
     const { postId } = req.query;
 
     if (!postId || typeof postId !== "string") {
-      return res.status(400).json({ error: "postIdが必要です" });
+      return sendErrorResponse(res, 400, "postIdが必要です", "MISSING_POST_ID");
     }
 
     try {
@@ -40,27 +45,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === "POST") {
-    const { postId, content, type } = req.body;
+    // レート制限チェック（コメント作成は厳しい制限）
+    if (!checkRateLimit(req, res, 30, 60 * 1000)) return;
 
-    if (!postId || !content || !type) {
-      return res.status(400).json({ error: "必要な情報が足りません" });
-    }
-
-    const session = await getServerSession(req, res, authOptions);
-
-    // 🔍 session.user.userId に修正
-    const authorId = session?.user?.userId || "anonymous";
-
+    // 入力検証
     try {
-      await client.send(
+      const validatedData = createCommentSchema.parse(req.body);
+      const { postId, content, type } = validatedData;
+
+      // XSS攻撃チェック
+      if (!validateSafeText(content)) {
+        return sendErrorResponse(res, 400, "不正な文字が含まれています", "INVALID_INPUT");
+      }
+
+      const session = await getServerSession(req, res, authOptions);
+
+            // セッション取得ヘルパーを使用
+      const authorId = session?.user?.userId || "anonymous";
+
+      try {
+        // 入力データのサニタイゼーション
+        const sanitizedContent = sanitizeHtml(content);
+
+        await client.send(
         new PutItemCommand({
           TableName: "Comments",
           Item: {
             commentId: { S: uuidv4() },
             postId: { S: postId },
-            content: { S: content },
+            content: { S: sanitizedContent },
             type: { S: type },
-            authorId: { S: authorId }, // ← 🔁 userId → authorId に統一
+            authorId: { S: authorId },
             createdAt: { S: new Date().toISOString() },
             expiresAt: {
               N: `${Math.floor(Date.now() / 1000) + 60 * 60 * 24}`, // 24時間後
@@ -68,10 +83,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
         })
       );
-      return res.status(200).json({ ok: true });
+      
+      return sendSuccessResponse(res, { success: true }, "コメントが作成されました", 201);
+      
     } catch (err) {
       console.error("コメント保存エラー:", err);
-      return res.status(500).json({ error: "保存失敗" });
+      return sendErrorResponse(res, 500, "コメントの保存に失敗しました", "SAVE_ERROR");
+    }
+    
+    } catch (validationError) {
+      if (validationError.errors) {
+        return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", validationError.errors);
+      }
+      return sendErrorResponse(res, 400, "不正なリクエストです", "BAD_REQUEST");
     }
   }
 
