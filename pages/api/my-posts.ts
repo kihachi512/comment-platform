@@ -63,11 +63,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     );
 
-    // 有効期限のチェック（TTLが設定されているが未削除の投稿を除外）
-    const now = Math.floor(Date.now() / 1000);
-    const validPosts = postsWithCommentCount.filter((post: any) => 
-      !post.expiresAt || (post.expiresAt as number) > now
-    );
+    // マイページでは自分の投稿を期限に関係なく表示（TTLチェックをスキップ）
+    // ユーザーは自分の投稿履歴を確認できるべきなので、有効期限は無視
+    const validPosts = postsWithCommentCount;
 
     // 作成日時の降順でソート（新しい投稿が上に）
     const sortedPosts = validPosts.sort((a: any, b: any) => 
