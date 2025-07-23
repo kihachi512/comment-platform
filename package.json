@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "echo 'Triggering deployment' && touch force-deploy-$(date +%s).txt",
     "agent:check": "echo '🤖 エージェント設定チェック中...' && test -f .cursorrules && echo '✅ エージェント設定OK'",
     "agent:update": "echo '🔄 エージェント設定を更新中...' && npm run agent:check",
     "security:audit": "npm audit --audit-level=moderate",
