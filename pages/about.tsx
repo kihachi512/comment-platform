@@ -56,7 +56,7 @@ export default function About() {
           <div className={styles.useCaseList}>
             <div className={styles.useCase}>今日あった嬉しいことを誰かに聞いてもらいたい</div>
             <div className={styles.useCase}>愚痴を吐き出してスッキリしたい</div>
-            <div className={styles.useCase">ちょっとした悩みを相談したい</div>
+            <div className={styles.useCase}>ちょっとした悩みを相談したい</div>
             <div className={styles.useCase}>今の気持ちを言語化して整理したい</div>
             <div className={styles.useCase}>匿名で本音を語り合いたい</div>
           </div>
