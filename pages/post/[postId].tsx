@@ -16,7 +16,11 @@ export default function PostDetail() {
   useEffect(() => {
     if (!postId) return;
 
-    fetch(`/api/post/${postId}`)
+    // URLクエリパラメータからviewerUserIdを取得
+    const viewerUserId = router.query.viewerUserId;
+    const apiUrl = viewerUserId ? `/api/post/${postId}?viewerUserId=${viewerUserId}` : `/api/post/${postId}`;
+
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setPost(data);

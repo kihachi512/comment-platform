@@ -7,6 +7,7 @@ const client = new DynamoDBClient({ region: "ap-northeast-1" });
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const rawId = req.query.postId;
   const postId = Array.isArray(rawId) ? rawId[0] : rawId;
+  const { viewerUserId } = req.query; // クエリパラメータで閲覧者のuserIdを受け取る
 
   if (!postId) {
     return res.status(400).json({ error: "無効なpostId" });
@@ -27,11 +28,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const post = unmarshall(result.Item);
-    // 1時間経過した投稿は非表示
+    
+    // TTLチェック: 投稿者本人の場合はスキップ
     const now = Math.floor(Date.now() / 1000);
-    if (post.expiresAt && post.expiresAt <= now) {
+    const isAuthor = viewerUserId && post.authorId === viewerUserId;
+    
+    if (!isAuthor && post.expiresAt && post.expiresAt <= now) {
       return res.status(404).json({ error: "投稿が見つかりません" });
     }
+    
     res.status(200).json(post);
   } catch (error) {
     console.error(error);

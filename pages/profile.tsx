@@ -158,7 +158,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
             ) : recentPosts.length > 0 ? (
               <div className={styles.postsList}>
                 {recentPosts.map((post) => (
-                  <Link key={post.postId} href={`/post/${post.postId}`} legacyBehavior>
+                  <Link key={post.postId} href={`/post/${post.postId}?viewerUserId=${userId}`} legacyBehavior>
                     <div className={styles.postCard} tabIndex={0} role="button">
                       <div className={styles.postContent}>
                         <span className={styles.postBody}>{post.body}</span>
