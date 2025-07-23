@@ -12,13 +12,27 @@ export default function Home() {
 
   useEffect(() => {
     fetch("/api/posts")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        const sorted = data.sort(
-          (a: any, b: any) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-        setPosts(sorted);
+        if (Array.isArray(data)) {
+          const sorted = data.sort(
+            (a: any, b: any) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+          setPosts(sorted);
+        } else {
+          console.error("API returned invalid data format:", data);
+          setPosts([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch posts:", error);
+        setPosts([]);
       });
   }, []);
 
@@ -26,12 +40,23 @@ export default function Home() {
     const fetchUser = async () => {
       if (!session?.user?.email) return;
 
-      const res = await fetch(`/api/profile?email=${session.user.email}`);
-      const data = await res.json();
+      try {
+        const res = await fetch(`/api/profile?email=${session.user.email}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
 
-      const fallbackName = session.user.name || "ユーザー";
-      setUsername(data?.username || fallbackName);
-      setUserId(data?.userId || "");
+        const fallbackName = session.user.name || "ユーザー";
+        setUsername(data?.username || fallbackName);
+        setUserId(data?.userId || "");
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
+        // Use fallback values on error
+        const fallbackName = session.user.name || "ユーザー";
+        setUsername(fallbackName);
+        setUserId("");
+      }
     };
 
     fetchUser();
