@@ -128,6 +128,17 @@
   text-align: center;
   letter-spacing: 0.01em;
 }
+
+/* 過去24時間の投稿セクション用のサブヘディング */
+.subHeading {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: var(--text-color);
+}
+
 .formGroup {
   width: 100%;
   max-width: 320px;
@@ -216,6 +227,114 @@ body.dark-mode .themeToggleButton {
   text-align: center;
 }
 
+/* 過去24時間投稿表示用の新しいスタイル */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--subtle-text-color);
+  font-size: 1rem;
+}
+
+.noPosts {
+  text-align: center;
+  padding: 20px;
+  color: var(--subtle-text-color);
+}
+
+.noPosts p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.newPostLink {
+  display: inline-block;
+  background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background 0.18s, transform 0.12s;
+}
+
+.newPostLink:hover {
+  background: linear-gradient(90deg, #3b82f6 60%, #2563eb 100%);
+  transform: translateY(-1px);
+}
+
+.postsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.postItem {
+  background: var(--bg-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.postItem:hover {
+  border-color: #2563eb;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.postTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.postTitle:hover {
+  color: #2563eb;
+}
+
+.postDate {
+  font-size: 0.85rem;
+  color: var(--subtle-text-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.postContent {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.postStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--subtle-text-color);
+}
+
+.commentCount {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.expiresInfo {
+  color: var(--subtle-text-color);
+}
+
 .myPostsSection {
   margin-top: 32px;
   padding: 20px 0 0 0;
@@ -290,6 +409,10 @@ body.dark-mode .themeToggleButton {
     font-size: 1.15rem;
     margin-bottom: 18px;
   }
+  .subHeading {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+  }
   .formGroup {
     max-width: 100%;
   }
@@ -305,5 +428,18 @@ body.dark-mode .themeToggleButton {
     width: 100%;
     font-size: 1rem;
     padding: 10px 0;
+  }
+  .postHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .postDate {
+    white-space: normal;
+  }
+  .postStats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 }
