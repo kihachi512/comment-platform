@@ -24,7 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const twentyFourHoursAgoISO = twentyFourHoursAgo.toISOString();
 
-    // 全投稿をスキャンして、条件に合うものをフィルタリング
+    // DynamoDBで２つの条件でフィルタリング:
+    // 1. authorId = 指定されたユーザーID
+    // 2. createdAt >= 過去24時間以内
     const result = await client.send(new ScanCommand({ 
       TableName: "Posts",
       FilterExpression: "authorId = :authorId AND createdAt >= :timeThreshold",
@@ -63,9 +65,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     );
 
-    // マイページでは自分の投稿を期限に関係なく表示（TTLチェックをスキップ）
-    // ユーザーは自分の投稿履歴を確認できるべきなので、有効期限は無視
-    const validPosts = postsWithCommentCount;
+    // TTLチェック: 有効期限が過ぎた投稿は除外
+    // 過去24時間 + 有効期限内の投稿のみ表示
+    const now = Math.floor(Date.now() / 1000);
+    const validPosts = postsWithCommentCount.filter((post: any) => 
+      !post.expiresAt || (post.expiresAt as number) > now
+    );
 
     // 作成日時の降順でソート（新しい投稿が上に）
     const sortedPosts = validPosts.sort((a: any, b: any) => 

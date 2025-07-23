@@ -151,7 +151,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
           <div className={styles.recentPostsSection}>
             <h2 className={styles.sectionHeading}>📝 過去24時間の投稿</h2>
             <p className={styles.sectionDescription}>
-              ※ あなたの投稿履歴は期限切れ後も表示されます
+              ※ 過去24時間以内で有効期限内の投稿のみ表示されます
             </p>
             {postsLoading ? (
               <div className={styles.loading}>投稿を読み込み中...</div>
