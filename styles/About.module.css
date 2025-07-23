@@ -204,7 +204,7 @@
 }
 
 .primaryCta {
-  background: #065f46;
+  background: #667eea;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -215,7 +215,7 @@
 }
 
 .primaryCta:hover {
-  background: #047857;
+  background: #764ba2;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }

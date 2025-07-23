@@ -177,7 +177,7 @@
 .submitButton {
   display: block;
   margin: 0 auto;
-  background: linear-gradient(90deg, #065f46 60%, #047857 100%);
+  background: linear-gradient(90deg, #667eea 60%, #764ba2 100%);
   color: white;
   padding: 10px 22px;
   font-size: 15px;
@@ -197,7 +197,7 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(90deg, #047857 60%, #065f46 100%);
+  background: linear-gradient(90deg, #764ba2 60%, #667eea 100%);
 }
 
 @media (max-width: 600px) {

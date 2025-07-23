@@ -76,7 +76,7 @@
   top: 32px;
   left: 50%;
   transform: translateX(-50%);
-  background: #047857;
+  background: #764ba2;
   color: #fff;
   padding: 18px 32px;
   border-radius: 12px;
@@ -255,7 +255,7 @@ body.dark-mode .themeToggleButton {
 .loginStatus {
   font-size: 1rem;
   font-weight: 600;
-  color: #047857;
+  color: #764ba2;
 }
 
 .emailInfo {
@@ -265,7 +265,7 @@ body.dark-mode .themeToggleButton {
 }
 
 .loginButton {
-  background: linear-gradient(90deg, #047857 0%, #065f46 100%);
+  background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
   color: white;
   padding: 12px 24px;
   font-size: 1rem;
@@ -280,7 +280,7 @@ body.dark-mode .themeToggleButton {
 }
 
 .loginButton:hover {
-  background: linear-gradient(90deg, #065f46 0%, #047857 100%);
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
 }

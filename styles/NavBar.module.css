@@ -100,11 +100,11 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .newPostButton {
-  background: linear-gradient(90deg, #065f46 60%, #047857 100%);
+  background: linear-gradient(90deg, #667eea 60%, #764ba2 100%);
   color: #fff;
 }
 .newPostButton:hover {
-  background: linear-gradient(90deg, #047857 60%, #065f46 100%);
+  background: linear-gradient(90deg, #764ba2 60%, #667eea 100%);
 }
 .profileButton {
   background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);

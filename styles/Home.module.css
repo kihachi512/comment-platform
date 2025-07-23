@@ -8,10 +8,10 @@
 .introSection {
   text-align: center;
   padding: 40px 0;
-  background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 16px;
   margin-bottom: 48px;
-  color: #065f46;
+  color: #667eea;
 }
 
 .heroContent {
@@ -51,11 +51,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  color: #065f46;
+  color: #667eea;
 }
 
 .introSubtitle {
-  font-size: 1rem; border: 2px solid #ffffff;
+  font-size: 1rem; 
   font-weight: 600;
   opacity: 0.9;
 }
@@ -91,7 +91,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.2);
   padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
@@ -109,31 +109,31 @@
 }
 
 .primaryButton {
-  background: #ffffff;
-  color: #065f46;
+  background: #10b981;
+  color: #667eea;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
   transition: all 0.2s;
-  font-size: 1rem; border: 2px solid #ffffff;
+  font-size: 1rem; 
 }
 
 .primaryButton:hover {
-  background: #047857;
+  background: #764ba2;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .secondaryButton {
-  background: transparent;
-  color: #065f46;
+  background: rgba(255, 255, 255, 0.2);
+  color: #667eea;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s;
-  font-size: 1rem; border: 2px solid #ffffff;
+  font-size: 1rem; 
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -153,19 +153,19 @@
 
 /* トグルボタン */
 .toggleButton {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
-  color: #065f46;
+  color: #667eea;
   transition: all 0.2s ease;
 }
 
 .toggleButton:hover {
   background: rgba(255, 255, 255, 0.3);
-  color: #065f46;
+  color: #667eea;
 }
 
 .steps {
@@ -189,7 +189,7 @@
   width: 40px;
   height: 40px;
   background: #3b82f6;
-  color: #065f46;
+  color: #667eea;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -253,7 +253,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: #065f46;
+  color: #667eea;
   font-size: 14px;
   font-weight: bold;
 }
@@ -267,7 +267,7 @@
 }
 
 .newPostButton {
-  background-color: #047857;
+  background-color: #764ba2;
 }
 
 .profileButton {
@@ -323,7 +323,7 @@
   align-items: center;
 }
 .commentCount {
-  font-size: 1rem; border: 2px solid #ffffff;
+  font-size: 1rem; 
   color: #6b7280;
   font-weight: bold;
   flex-shrink: 0;
@@ -368,7 +368,7 @@
   }
   
   .heroSubtitle {
-    font-size: 1rem; border: 2px solid #ffffff;
+    font-size: 1rem; 
   }
   
   .introHeader {
@@ -392,7 +392,7 @@
   }
   
   .heroDescription {
-    font-size: 1rem; border: 2px solid #ffffff;
+    font-size: 1rem; 
     margin-bottom: 24px;
   }
   
@@ -456,7 +456,7 @@
   }
   .actions button {
     width: 100%;
-    font-size: 1rem; border: 2px solid #ffffff;
+    font-size: 1rem; 
     padding: 10px 0;
   }
 }
