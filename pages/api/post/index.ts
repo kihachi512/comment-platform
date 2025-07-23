@@ -54,16 +54,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     );
     
-    return sendSuccessResponse(res, { postId }, "投稿が作成されました", 201);
+      return sendSuccessResponse(res, { postId }, "投稿が作成されました", 201);
+      
+    } catch (err) {
+      console.error("投稿の保存に失敗:", err);
+      return sendErrorResponse(res, 500, "投稿の保存に失敗しました", "SAVE_ERROR");
+    }
     
-  } catch (err) {
-    console.error("投稿の保存に失敗:", err);
-    return sendErrorResponse(res, 500, "投稿の保存に失敗しました", "SAVE_ERROR");
-  }
-  
   } catch (validationError) {
-    if (validationError.errors) {
-      return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", validationError.errors);
+    if (validationError instanceof Error && 'errors' in validationError) {
+      return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", (validationError as any).errors);
     }
     return sendErrorResponse(res, 400, "不正なリクエストです", "BAD_REQUEST");
   }

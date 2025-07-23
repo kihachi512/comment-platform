@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const session = await getServerSession(req, res, authOptions);
 
-            // セッション取得ヘルパーを使用
+      // セッション取得ヘルパーを使用
       const authorId = session?.user?.userId || "anonymous";
 
       try {
@@ -84,16 +84,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
       );
       
-      return sendSuccessResponse(res, { success: true }, "コメントが作成されました", 201);
+        return sendSuccessResponse(res, { success: true }, "コメントが作成されました", 201);
+        
+      } catch (err) {
+        console.error("コメント保存エラー:", err);
+        return sendErrorResponse(res, 500, "コメントの保存に失敗しました", "SAVE_ERROR");
+      }
       
-    } catch (err) {
-      console.error("コメント保存エラー:", err);
-      return sendErrorResponse(res, 500, "コメントの保存に失敗しました", "SAVE_ERROR");
-    }
-    
     } catch (validationError) {
-      if (validationError.errors) {
-        return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", validationError.errors);
+      if (validationError instanceof Error && 'errors' in validationError) {
+        return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", (validationError as any).errors);
       }
       return sendErrorResponse(res, 400, "不正なリクエストです", "BAD_REQUEST");
     }

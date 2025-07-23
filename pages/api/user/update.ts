@@ -31,32 +31,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return sendErrorResponse(res, 400, "ユーザー名に不正な文字が含まれています", "INVALID_INPUT");
     }
 
-    // 入力データのサニタイゼーション
-    const sanitizedUsername = sanitizeHtml(username);
+    try {
+      // 入力データのサニタイゼーション
+      const sanitizedUsername = sanitizeHtml(username);
 
-    const command = new UpdateItemCommand({
-      TableName: "Users",
-      Key: {
-        email: { S: email },
-      },
-      UpdateExpression: "SET username = :username",
-      ExpressionAttributeValues: {
-        ":username": { S: sanitizedUsername },
-      },
-    });
+      const command = new UpdateItemCommand({
+        TableName: "Users",
+        Key: {
+          email: { S: email },
+        },
+        UpdateExpression: "SET username = :username",
+        ExpressionAttributeValues: {
+          ":username": { S: sanitizedUsername },
+        },
+      });
 
-    await client.send(command);
+      await client.send(command);
+      
+      return sendSuccessResponse(res, { username: sanitizedUsername }, "ユーザー名を更新しました");
+      
+    } catch (error) {
+      console.error("更新エラー:", error);
+      return sendErrorResponse(res, 500, "ユーザー名の更新に失敗しました", "UPDATE_ERROR");
+    }
     
-    return sendSuccessResponse(res, { username: sanitizedUsername }, "ユーザー名を更新しました");
-    
-  } catch (error) {
-    console.error("更新エラー:", error);
-    return sendErrorResponse(res, 500, "ユーザー名の更新に失敗しました", "UPDATE_ERROR");
-  }
-  
   } catch (validationError) {
-    if (validationError.errors) {
-      return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", validationError.errors);
+    if (validationError instanceof Error && 'errors' in validationError) {
+      return sendErrorResponse(res, 400, "入力データが無効です", "VALIDATION_ERROR", (validationError as any).errors);
     }
     return sendErrorResponse(res, 400, "不正なリクエストです", "BAD_REQUEST");
   }
