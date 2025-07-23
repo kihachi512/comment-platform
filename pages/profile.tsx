@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 import Link from "next/link";
@@ -105,7 +106,16 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
   }
 
   return (
-    <div className={styles.container}>
+    <>
+      <Head>
+        <title>マイページ | Textories - プロフィール設定</title>
+        <meta name="description" content="Textoriesのマイページでプロフィール設定、過去24時間の投稿履歴確認、アカウント管理ができます。ユーザー名の変更やテーマ切り替えも可能です。" />
+        <meta property="og:title" content="マイページ | Textories - プロフィール設定" />
+        <meta property="og:description" content="Textoriesのマイページでプロフィール設定、過去24時間の投稿履歴確認、アカウント管理ができます。" />
+        <meta name="twitter:title" content="マイページ | Textories - プロフィール設定" />
+        <meta name="twitter:description" content="プロフィール設定と投稿履歴を確認できます。" />
+      </Head>
+      <div className={styles.container}>
       {showSuccess && (
         <div className={styles.successPopup}>
           <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> ユーザー名を更新しました！
@@ -214,6 +224,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
       </div>
 
 
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /new
+Allow: /profile
+
+# サイトマップの場所
+Sitemap: https://textories.vercel.app/sitemap.xml
+
+# クローリング頻度の調整
+Crawl-delay: 1
+
+# 検索エンジンに不要なパス
+Disallow: /api/
+Disallow: /post/
+Disallow: /_next/
+Disallow: /setting

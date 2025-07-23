@@ -50,6 +50,33 @@ export default function App({ Component, pageProps }: AppProps) {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+          
+          {/* 構造化データ */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "Textories",
+                "description": "投稿が1時間で自動的に見えなくなる新感覚のメッセージサービス",
+                "url": "https://textories.vercel.app",
+                "applicationCategory": "SocialNetworkingApplication",
+                "operatingSystem": "All",
+                "creator": {
+                  "@type": "Organization",
+                  "name": "桃缶党"
+                },
+                "featureList": [
+                  "1時間で消える投稿",
+                  "匿名投稿・コメント",
+                  "Googleアカウント連携",
+                  "ユーザー名設定",
+                  "リアルタイム投稿表示"
+                ]
+              })
+            }}
+          />
         </Head>
         <NavBar />
         <Component {...pageProps} toggleTheme={toggleTheme} theme={theme} />

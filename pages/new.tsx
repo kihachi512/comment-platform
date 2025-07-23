@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -54,7 +55,16 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className={styles.container}>
+    <>
+      <Head>
+        <title>新規投稿 | Textories - メッセージを投稿</title>
+        <meta name="description" content="1時間で消える新感覚のメッセージを投稿しよう。思いついたことを気軽にシェアできるTextoriesで、今の気持ちを表現してみませんか？" />
+        <meta property="og:title" content="新規投稿 | Textories - メッセージを投稿" />
+        <meta property="og:description" content="1時間で消える新感覚のメッセージを投稿しよう。思いついたことを気軽にシェアできるTextoriesで、今の気持ちを表現してみませんか？" />
+        <meta name="twitter:title" content="新規投稿 | Textories - メッセージを投稿" />
+        <meta name="twitter:description" content="1時間で消える新感覚のメッセージを投稿しよう。" />
+      </Head>
+      <div className={styles.container}>
       {showSuccess && (
         <div className={styles.successPopup}>
           <span style={{ fontSize: 22, flexShrink: 0 }}>✅</span> 投稿が作成されました！
@@ -89,6 +99,7 @@ export default function NewPostPage() {
           投稿する
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- ホームページ（投稿一覧） -->
+  <url>
+    <loc>https://textories.vercel.app/</loc>
+    <lastmod>2024-01-23T00:00:00+00:00</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- サービス概要ページ -->
+  <url>
+    <loc>https://textories.vercel.app/about</loc>
+    <lastmod>2024-01-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 新規投稿ページ -->
+  <url>
+    <loc>https://textories.vercel.app/new</loc>
+    <lastmod>2024-01-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- マイページ -->
+  <url>
+    <loc>https://textories.vercel.app/profile</loc>
+    <lastmod>2024-01-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
