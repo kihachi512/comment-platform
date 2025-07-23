@@ -29,11 +29,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const post = unmarshall(result.Item);
     
-    // TTLチェック: 投稿者本人の場合はスキップ
+    // 一般ユーザーには1時間制限、投稿者本人には24時間制限を適用
     const now = Math.floor(Date.now() / 1000);
     const isAuthor = viewerUserId && post.authorId === viewerUserId;
+    const createdAtTimestamp = Math.floor(new Date(post.createdAt).getTime() / 1000);
+    const oneHourAgo = now - 60 * 60;
     
-    if (!isAuthor && post.expiresAt && post.expiresAt <= now) {
+    // 作者以外は1時間以内の投稿のみ閲覧可能
+    if (!isAuthor && createdAtTimestamp <= oneHourAgo) {
       return res.status(404).json({ error: "投稿が見つかりません" });
     }
     

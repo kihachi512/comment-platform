@@ -34,10 +34,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return { ...post, commentCount: commentResult.Count || 0 };
       })
     );
+    
+    // 一般投稿表示では1時間制限を適用（プライバシー保護）
     const now = Math.floor(Date.now() / 1000);
+    const oneHourAgo = now - 60 * 60; // 1時間前
+    
     let filtered = postsWithCommentCount;
     if (!req.query.all) {
-      filtered = postsWithCommentCount?.filter((item) => !item.expiresAt || item.expiresAt > now);
+      // 1時間以内の投稿のみ表示
+      filtered = postsWithCommentCount?.filter((item) => {
+        const createdAtTimestamp = Math.floor(new Date(item.createdAt).getTime() / 1000);
+        return createdAtTimestamp > oneHourAgo;
+      });
     }
     res.status(200).json(filtered);
   } catch (err) {

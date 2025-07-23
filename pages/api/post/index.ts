@@ -22,7 +22,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       authorName: { S: authorName || "匿名ユーザー" },
       createdAt: { S: new Date().toISOString() },
       expiresAt: {
-        N: `${Math.floor(Date.now() / 1000) + 60 * 60}`, // 60分後
+        // DynamoDBからの物理削除: 24時間後（ストレージ節約）
+        // 表示制限: 一般ユーザー1時間、作者24時間（各APIで制御）
+        N: `${Math.floor(Date.now() / 1000) + 24 * 60 * 60}`, // 24時間後
       },
     };
 
