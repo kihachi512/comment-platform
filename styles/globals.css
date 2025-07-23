@@ -21,3 +21,10 @@ body {
   color: var(--text-color);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+/* スマホ表示時のボトムナビ対応 */
+@media (max-width: 600px) {
+  body {
+    padding-bottom: 60px; /* ボトムナビ(約54px)+ 余白(6px) = 60px */
+  }
+}
