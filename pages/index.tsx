@@ -10,33 +10,22 @@ export default function Home() {
   const { data: session } = useSession();
   const [username, setUsername] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
-  const [showHero, setShowHero] = useState<boolean>(true);
-  const [showHowTo, setShowHowTo] = useState<boolean>(true);
+  const [showIntro, setShowIntro] = useState<boolean>(true);
 
   // localStorage から折りたたみ状態を復元
   useEffect(() => {
-    const savedHeroState = localStorage.getItem('textories-show-hero');
-    const savedHowToState = localStorage.getItem('textories-show-howto');
+    const savedIntroState = localStorage.getItem('textories-show-intro');
     
-    if (savedHeroState !== null) {
-      setShowHero(JSON.parse(savedHeroState));
-    }
-    if (savedHowToState !== null) {
-      setShowHowTo(JSON.parse(savedHowToState));
+    if (savedIntroState !== null) {
+      setShowIntro(JSON.parse(savedIntroState));
     }
   }, []);
 
   // 状態変更時に localStorage に保存
-  const toggleHero = () => {
-    const newState = !showHero;
-    setShowHero(newState);
-    localStorage.setItem('textories-show-hero', JSON.stringify(newState));
-  };
-
-  const toggleHowTo = () => {
-    const newState = !showHowTo;
-    setShowHowTo(newState);
-    localStorage.setItem('textories-show-howto', JSON.stringify(newState));
+  const toggleIntro = () => {
+    const newState = !showIntro;
+    setShowIntro(newState);
+    localStorage.setItem('textories-show-intro', JSON.stringify(newState));
   };
 
   useEffect(() => {
@@ -103,79 +92,72 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
 
-      {/* ヒーローセクション */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroHeader}>
-          <h1 className={styles.heroTitleCompact}>
+      {/* サービス紹介セクション */}
+      <section className={styles.introSection}>
+        <div className={styles.introHeader}>
+          <h1 className={styles.introTitle}>
             📝 Textories
-            <span className={styles.heroSubtitleCompact}>1時間で消えるメッセージ</span>
+            <span className={styles.introSubtitle}>1時間で消えるメッセージ</span>
           </h1>
           <button 
             className={styles.toggleButton}
-            onClick={toggleHero}
+            onClick={toggleIntro}
           >
-            {showHero ? '▲ 閉じる' : '▼ サービス詳細'}
+            {showIntro ? '▲ 閉じる' : '▼ サービス説明・使い方'}
           </button>
         </div>
-        {showHero && (
-          <div className={styles.heroContent}>
-            <p className={styles.heroDescription}>
-              今この瞬間の気持ちを投稿しよう。<br />
-              投稿は<strong>1時間後に自動で消える</strong>から、気軽に本音を表現できます。
-            </p>
-            <div className={styles.heroFeatures}>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>⏰</span>
-                <span>1時間で自動消去</span>
+        {showIntro && (
+          <div className={styles.introContent}>
+            {/* サービス説明 */}
+            <div className={styles.heroContent}>
+              <p className={styles.heroDescription}>
+                今この瞬間の気持ちを投稿しよう。<br />
+                投稿は<strong>1時間後に自動で消える</strong>から、気軽に本音を表現できます。
+              </p>
+              <div className={styles.heroFeatures}>
+                <div className={styles.feature}>
+                  <span className={styles.featureIcon}>⏰</span>
+                  <span>1時間で自動消去</span>
+                </div>
+                <div className={styles.feature}>
+                  <span className={styles.featureIcon}>👤</span>
+                  <span>匿名投稿可能</span>
+                </div>
+                <div className={styles.feature}>
+                  <span className={styles.featureIcon}>💬</span>
+                  <span>気軽にコメント</span>
+                </div>
               </div>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>👤</span>
-                <span>匿名投稿可能</span>
+              <div className={styles.heroActions}>
+                <Link href="/new" className={styles.primaryButton}>
+                  📝 今すぐ投稿する
+                </Link>
+                <Link href="/about" className={styles.secondaryButton}>
+                  サービス詳細
+                </Link>
               </div>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>💬</span>
-                <span>気軽にコメント</span>
+            </div>
+            
+            {/* 使い方説明 */}
+            <div className={styles.howToContent}>
+              <h2 className={styles.sectionTitle}>📖 使い方</h2>
+              <div className={styles.steps}>
+                <div className={styles.step}>
+                  <div className={styles.stepNumber}>1</div>
+                  <h3>投稿する</h3>
+                  <p>今の気持ちや考えを50文字以内で投稿</p>
+                </div>
+                <div className={styles.step}>
+                  <div className={styles.stepNumber}>2</div>
+                  <h3>交流する</h3>
+                  <p>他の人の投稿にコメントで気軽に反応</p>
+                </div>
+                <div className={styles.step}>
+                  <div className={styles.stepNumber}>3</div>
+                  <h3>消える</h3>
+                  <p>1時間後に投稿が自動で見えなくなります</p>
+                </div>
               </div>
-            </div>
-            <div className={styles.heroActions}>
-              <Link href="/new" className={styles.primaryButton}>
-                📝 今すぐ投稿する
-              </Link>
-              <Link href="/about" className={styles.secondaryButton}>
-                サービス詳細
-              </Link>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* 使い方説明 */}
-      <section className={styles.howToSection}>
-        <div className={styles.howToHeader}>
-          <h2 className={styles.sectionTitle}>📖 使い方</h2>
-          <button 
-            className={styles.toggleButton}
-            onClick={toggleHowTo}
-          >
-            {showHowTo ? '▲ 閉じる' : '▼ 詳しく見る'}
-          </button>
-        </div>
-        {showHowTo && (
-          <div className={styles.steps}>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>1</div>
-              <h3>投稿する</h3>
-              <p>今の気持ちや考えを50文字以内で投稿</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>2</div>
-              <h3>交流する</h3>
-              <p>他の人の投稿にコメントで気軽に反応</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>3</div>
-              <h3>消える</h3>
-              <p>1時間後に投稿が自動で見えなくなります</p>
             </div>
           </div>
         )}

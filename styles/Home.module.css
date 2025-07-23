@@ -4,8 +4,8 @@
   padding: 24px;
 }
 
-/* ヒーローセクション */
-.heroSection {
+/* サービス紹介セクション */
+.introSection {
   text-align: center;
   padding: 40px 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -36,7 +36,7 @@
   opacity: 0.9;
 }
 
-.heroHeader {
+.introHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +44,7 @@
   padding: 0 20px;
 }
 
-.heroTitleCompact {
+.introTitle {
   font-size: 2rem;
   font-weight: 900;
   display: flex;
@@ -54,10 +54,22 @@
   color: white;
 }
 
-.heroSubtitleCompact {
+.introSubtitle {
   font-size: 1rem;
   font-weight: 600;
   opacity: 0.9;
+}
+
+.introContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.howToContent {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .heroDescription {
@@ -139,32 +151,21 @@
   color: var(--text-color);
 }
 
-/* 使い方セクション */
-.howToSection {
-  margin-bottom: 48px;
-}
-
-.howToHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
+/* トグルボタン */
 .toggleButton {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
-  color: #6b7280;
+  color: white;
   transition: all 0.2s ease;
 }
 
 .toggleButton:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
 }
 
 .steps {
@@ -356,8 +357,8 @@
     padding: 8px;
   }
   
-  /* ヒーローセクション モバイル */
-  .heroSection {
+  /* サービス紹介セクション モバイル */
+  .introSection {
     padding: 32px 0;
     margin-bottom: 32px;
   }
@@ -370,19 +371,24 @@
     font-size: 1rem;
   }
   
-  .heroHeader {
+  .introHeader {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
   }
   
-  .heroTitleCompact {
+  .introTitle {
     font-size: 1.5rem;
     align-items: center;
   }
   
-  .heroSubtitleCompact {
+  .introSubtitle {
     font-size: 0.9rem;
+  }
+  
+  .howToContent {
+    margin-top: 32px;
+    padding-top: 24px;
   }
   
   .heroDescription {
