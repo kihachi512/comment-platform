@@ -275,6 +275,95 @@ body.dark-mode .themeToggleButton {
   text-align: center;
 }
 
+/* 過去24時間の投稿セクション */
+.recentPostsSection {
+  width: 100%;
+  margin-top: 32px;
+  padding: 20px 0 0 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.postsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.postCard {
+  background: var(--card-bg-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.postCard:hover, 
+.postCard:focus {
+  border-color: #2563eb;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+  transform: translateY(-1px);
+}
+
+.postContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.postBody {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.postMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.commentCount {
+  font-size: 0.9rem;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.postDate {
+  font-size: 0.85rem;
+  color: var(--subtle-text-color);
+}
+
+.noPosts {
+  color: var(--subtle-text-color);
+  font-size: 1rem;
+  text-align: center;
+  padding: 24px;
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.loading {
+  color: var(--subtle-text-color);
+  font-size: 1rem;
+  text-align: center;
+  padding: 24px;
+}
+
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
   10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -311,6 +400,42 @@ body.dark-mode .themeToggleButton {
     width: 100%;
     font-size: 1rem;
     padding: 10px 0;
+  }
+
+  /* 過去24時間の投稿セクションのモバイル対応 */
+  .recentPostsSection {
+    margin-top: 24px;
+    padding: 16px 0 0 0;
+  }
+
+  .sectionHeading {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .postCard {
+    padding: 14px 16px;
+  }
+
+  .postBody {
+    font-size: 1rem;
+  }
+
+  .postMeta {
+    gap: 8px;
+  }
+
+  .commentCount {
+    font-size: 0.85rem;
+  }
+
+  .postDate {
+    font-size: 0.8rem;
+  }
+
+  .noPosts {
+    padding: 18px;
+    font-size: 0.95rem;
   }
 
 }
