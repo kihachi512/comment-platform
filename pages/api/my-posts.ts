@@ -65,12 +65,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     );
 
-    // TTLチェック: 有効期限が過ぎた投稿は除外
-    // 過去24時間 + 有効期限内の投稿のみ表示
-    const now = Math.floor(Date.now() / 1000);
-    const validPosts = postsWithCommentCount.filter((post: any) => 
-      !post.expiresAt || (post.expiresAt as number) > now
-    );
+    // マイページでは24時間のフィルタリングのみ適用
+    // TTLは他ユーザーからの閲覧制限のため、自分の投稿履歴では無視
+    // DynamoDBで既に24時間フィルタリング済みなので、そのまま使用
+    const validPosts = postsWithCommentCount;
 
     // 作成日時の降順でソート（新しい投稿が上に）
     const sortedPosts = validPosts.sort((a: any, b: any) => 
