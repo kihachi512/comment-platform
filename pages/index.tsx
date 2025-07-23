@@ -133,14 +133,13 @@ export default function Home() {
                   📝 今すぐ投稿する
                 </Link>
                 <Link href="/about" className={styles.secondaryButton}>
-                  サービス詳細
+                  サービス概要
                 </Link>
               </div>
             </div>
             
             {/* 使い方説明 */}
             <div className={styles.howToContent}>
-              <h2 className={styles.sectionTitle}>📖 使い方</h2>
               <div className={styles.steps}>
                 <div className={styles.step}>
                   <div className={styles.stepNumber}>1</div>
