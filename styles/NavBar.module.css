@@ -47,6 +47,10 @@
   margin-left: 2px;
   letter-spacing: 0.01em;
 }
+
+.mobileUserName {
+  display: none; /* デスクトップでは非表示 */
+}
 .nav {
   display: flex;
   align-items: center;
@@ -228,6 +232,22 @@ body.dark-mode .themeToggleButton:hover {
   .logoRow {
     margin-bottom: 12px;
     gap: 8px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobileUserName {
+    display: flex !important; /* スマホでは表示 */
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
   .navRow {
     gap: 0;
@@ -323,17 +343,7 @@ body.dark-mode .themeToggleButton:hover {
     background: none;
     pointer-events: none;
   }
-  .bottomUserName {
-    width: 100vw;
-    background: var(--card-bg-color);
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.05rem;
-    color: var(--text-color);
-    padding: 10px 0 2px 0;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-    pointer-events: auto;
-  }
+
   .bottomNav {
     width: 100vw;
     display: flex;

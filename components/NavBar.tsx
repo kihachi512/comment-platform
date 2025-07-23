@@ -15,6 +15,15 @@ export default function NavBar() {
             <span className={styles.logoSub}>〈 A note that only lasts for one hour 〉</span>
           </Link>
         </div>
+        {/* スマホ表示時のユーザー名をロゴの下に配置 */}
+        {session && (
+          <div className={styles.mobileUserName}>
+            <span className={styles.userName}>{session.user?.username || session.user?.name || "ユーザー"}</span>
+            {session.user?.userId && (
+              <span className={styles.userId}>#{session.user.userId}</span>
+            )}
+          </div>
+        )}
       </div>
       <div className={styles.navRow}>
         <nav className={styles.nav}>
@@ -49,14 +58,6 @@ export default function NavBar() {
       </div>
       {/* --- ボトムナビ（スマホのみ表示） --- */}
       <div className={styles.bottomNavWrapper}>
-        {session && (
-          <div className={styles.bottomUserName}>
-            <span className={styles.userName}>{session.user?.username || session.user?.name || "ユーザー"}</span>
-            {session.user?.userId && (
-              <span className={styles.userId}>#{session.user.userId}</span>
-            )}
-          </div>
-        )}
         <nav className={styles.bottomNav}>
           <Link href="/" className={styles.bottomNavItem}>
             <MdHome size={26} />
