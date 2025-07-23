@@ -212,6 +212,106 @@ body.dark-mode .themeToggleButton {
   color: #fff;
 }
 
+/* ログイン・ログアウトセクション */
+.authSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  gap: 12px;
+}
+
+.authLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--subtle-text-color);
+  margin-bottom: 4px;
+}
+
+.authButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.loginInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.loginStatus {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #059669;
+}
+
+.emailInfo {
+  font-size: 0.9rem;
+  color: var(--subtle-text-color);
+  font-family: monospace;
+}
+
+.loginButton {
+  background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+  transition: all 0.18s ease;
+  width: 100%;
+  max-width: 320px;
+}
+
+.loginButton:hover {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.loginButton:active {
+  transform: translateY(0px);
+}
+
+.logoutButton {
+  background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+  color: white;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.2);
+  transition: all 0.18s ease;
+}
+
+.logoutButton:hover {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+.logoutButton:active {
+  transform: translateY(0px);
+}
+
 .notLoggedInMsg {
   color: var(--subtle-text-color);
   font-size: 1rem;
@@ -444,6 +544,27 @@ body.dark-mode .themeToggleButton {
   .noPosts {
     padding: 18px;
     font-size: 0.95rem;
+  }
+
+  /* ログイン・ログアウトセクションのモバイル対応 */
+  .authSection {
+    margin-top: 20px;
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .loginInfo {
+    padding: 10px 14px;
+  }
+
+  .loginButton {
+    padding: 11px 20px;
+    font-size: 0.95rem;
+  }
+
+  .logoutButton {
+    padding: 9px 18px;
+    font-size: 0.9rem;
   }
 
 }

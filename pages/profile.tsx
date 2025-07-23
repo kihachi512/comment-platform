@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 import Link from "next/link";
 
@@ -138,6 +138,32 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
             <button onClick={toggleTheme} className={styles.themeToggleButton}>
               {theme === 'light' ? '🌙 ダーク' : '☀️ ライト'}
             </button>
+          </div>
+
+          {/* ログイン・ログアウトセクション */}
+          <div className={styles.authSection}>
+            <span className={styles.authLabel}>アカウント:</span>
+            {session ? (
+              <div className={styles.authButtons}>
+                <div className={styles.loginInfo}>
+                  <span className={styles.loginStatus}>✅ ログイン中</span>
+                  <span className={styles.emailInfo}>{session.user?.email}</span>
+                </div>
+                <button 
+                  onClick={() => signOut()} 
+                  className={styles.logoutButton}
+                >
+                  🚪 ログアウト
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => signIn("google")} 
+                className={styles.loginButton}
+              >
+                🔐 Googleでログイン
+              </button>
+            )}
           </div>
           {showError && (
             <div className={styles.errorPopup}>
