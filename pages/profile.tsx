@@ -152,7 +152,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
 
           {/* ログイン・ログアウトセクション */}
           <div className={styles.authSection}>
-            <span className={styles.authLabel}>アカウント:</span>
             {session ? (
               <div className={styles.authButtons}>
                 <div className={styles.loginInfo}>
@@ -186,9 +185,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         {session && (
           <div className={styles.recentPostsSection}>
             <h2 className={styles.sectionHeading}>📝 過去24時間の投稿</h2>
-            <p className={styles.sectionDescription}>
-              ※ 過去24時間以内の投稿履歴（期限切れ含む）を表示
-            </p>
             {postsLoading ? (
               <div className={styles.loading}>投稿を読み込み中...</div>
             ) : recentPosts.length > 0 ? (

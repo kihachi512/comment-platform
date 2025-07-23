@@ -18,10 +18,9 @@ export default function About() {
         <h1 className={styles.title}>💡 Textories とは？</h1>
         
         <div className={styles.conceptSection}>
-          <h2 className={styles.conceptTitle}>🌟 コンセプト</h2>
           <p className={styles.conceptDescription}>
-            <strong>「今この瞬間の気持ちを、気軽に表現できる場所」</strong><br />
-            投稿が1時間で消えるから、深く考えすぎずに本音を投稿できます。
+            <strong>「今この瞬間の気持ちを、気軽に表現しよう」</strong><br />
+            投稿が1時間で消えるから、深く考えすぎずにふらっと投稿できます。
           </p>
         </div>
 
@@ -36,17 +35,12 @@ export default function About() {
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>👤</div>
               <h3>匿名投稿可能</h3>
-              <p>アカウント登録なしで匿名投稿できます。身バレを気にせず本音を投稿</p>
+              <p>アカウント登録なしで匿名投稿できます。人間関係を気にせず本音を投稿</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>💬</div>
-              <h3>気軽なコメント</h3>
+              <h3>気軽にコメント</h3>
               <p>他の人の投稿にコメントで気軽に反応・共感できます</p>
-            </div>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔐</div>
-              <h3>安全・プライベート</h3>
-              <p>個人情報の蓄積がなく、デジタルデトックスにも最適</p>
             </div>
           </div>
         </div>
@@ -55,8 +49,7 @@ export default function About() {
           <h2 className={styles.sectionTitle}>🎯 こんな時に</h2>
           <div className={styles.useCaseList}>
             <div className={styles.useCase}>今日あった嬉しいことを誰かに聞いてもらいたい</div>
-            <div className={styles.useCase}>愚痴を吐き出してスッキリしたい</div>
-            <div className={styles.useCase}>ちょっとした悩みを相談したい</div>
+            <div className={styles.useCase}>ちょっとしたつぶやきを投稿したい</div>
             <div className={styles.useCase}>今の気持ちを言語化して整理したい</div>
             <div className={styles.useCase}>匿名で本音を語り合いたい</div>
           </div>
@@ -86,7 +79,7 @@ export default function About() {
             </div>
             <div className={styles.authOption}>
               <h3>🔑 Googleログイン</h3>
-              <p>ユーザー名設定、マイページ、24時間投稿履歴が利用可能</p>
+              <p>ユーザー名設定、過去24時間の投稿履歴が利用可能</p>
             </div>
           </div>
         </div>
