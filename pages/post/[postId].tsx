@@ -9,7 +9,7 @@ export default function PostDetail() {
 
   const [post, setPost] = useState<any>(null);
   const [comments, setComments] = useState<any[]>([]);
-  const [form, setForm] = useState({ content: "", type: "praise" });
+  const [form, setForm] = useState({ content: "", type: "positive" });
   const [authorProfile, setAuthorProfile] = useState<{ username: string; userId: string } | null>(null);
   const [error, setError] = useState("");
 
@@ -63,29 +63,48 @@ export default function PostDetail() {
       return;
     }
 
-    await fetch("/api/comments", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, postId }),
-    });
-    setForm({ content: "", type: "praise" });
+    if (form.content.trim().length === 0) {
+      setError("コメント内容を入力してください。");
+      return;
+    }
 
-    const res = await fetch(`/api/comments?postId=${postId}`);
-    const freshComments = await res.json();
+    try {
+      const response = await fetch("/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, postId }),
+      });
 
-    const enriched = freshComments
-      .map((c: any) => ({
-        ...c,
-        formattedDate: new Date(c.createdAt).toLocaleString("ja-JP", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-      }))
-      .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    setComments(enriched);
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.message || "コメントの投稿に失敗しました。");
+        return;
+      }
+
+      setForm({ content: "", type: "positive" });
+
+      // コメント一覧を再取得
+      const res = await fetch(`/api/comments?postId=${postId}`);
+      const freshComments = await res.json();
+
+      const enriched = freshComments
+        .map((c: any) => ({
+          ...c,
+          formattedDate: new Date(c.createdAt).toLocaleString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        }))
+        .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setComments(enriched);
+
+    } catch (error) {
+      console.error("コメント投稿エラー:", error);
+      setError("ネットワークエラーが発生しました。しばらく待ってから再試行してください。");
+    }
   };
 
   if (!post) return <div className={styles.loading}>読み込み中...</div>;

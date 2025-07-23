@@ -12,7 +12,7 @@ export const createPostSchema = z.object({
 export const createCommentSchema = z.object({
   postId: z.string().min(1, "投稿IDは必須です"),
   content: z.string().min(1, "コメント内容は必須です").max(200, "コメントは200文字以内で入力してください"),
-  type: z.enum(['positive', 'negative'])
+  type: z.enum(['positive', 'negative', 'praise', 'neutral']).optional().default('positive')
 });
 
 // ユーザー更新バリデーション
