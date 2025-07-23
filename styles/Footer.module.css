@@ -8,9 +8,9 @@
   letter-spacing: 0.05em;
 }
 
-/* スマホ表示時の追加余白 */
+/* スマ�E表示時�E追加余白 */
 @media (max-width: 600px) {
   .footer {
-    padding-bottom: 16px; /* 12px → 16px でより明確な余白 */
+    padding-bottom: 16px; /* 12px ↁE16px でより明確な余白 */
   }
 }

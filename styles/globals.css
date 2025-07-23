@@ -22,9 +22,9 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* スマホ表示時のボトムナビ対応 */
+/* スマ�E表示時�Eボトムナビ対忁E*/
 @media (max-width: 600px) {
   body {
-    padding-bottom: 60px; /* ボトムナビ(約54px)+ 余白(6px) = 60px */
+    padding-bottom: 60px; /* ボトムナビ(紁E4px)+ 余白(6px) = 60px */
   }
 }

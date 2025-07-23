@@ -49,7 +49,7 @@
 }
 
 .mobileUserName {
-  display: none; /* デスクトップでは非表示 */
+  display: none; /* チE��クトップでは非表示 */
 }
 .nav {
   display: flex;
@@ -100,11 +100,11 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .newPostButton {
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
+  background: linear-gradient(90deg, #065f46 60%, #047857 100%);
   color: #fff;
 }
 .newPostButton:hover {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
+  background: linear-gradient(90deg, #047857 60%, #065f46 100%);
 }
 .profileButton {
   background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
@@ -230,32 +230,32 @@ body.dark-mode .themeToggleButton:hover {
 }
 @media (max-width: 800px) {
   .logoRow {
-    margin-bottom: 6px; /* 12px→6px に縮小 */
-    gap: 4px; /* 8px→4px に縮小 */
+    margin-bottom: 6px; /* 12pxↁEpx に縮封E*/
+    gap: 4px; /* 8pxↁEpx に縮封E*/
     flex-direction: column;
     align-items: center;
   }
   .mobileUserName {
-    display: flex !important; /* スマホでは表示 */
+    display: flex !important; /* スマ�Eでは表示 */
     align-items: center;
-    gap: 6px; /* 8px→6px に縮小 */
-    margin-top: 4px; /* 8px→4px に縮小 */
+    gap: 6px; /* 8pxↁEpx に縮封E*/
+    margin-top: 4px; /* 8pxↁEpx に縮封E*/
     margin-bottom: 2px; /* 下余白を追加 */
-    padding: 6px 12px; /* 8px 16px → 6px 12px に縮小 */
+    padding: 6px 12px; /* 8px 16px ↁE6px 12px に縮封E*/
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 16px; /* 20px→16px に縮小 */
-    font-size: 0.85rem; /* 0.9rem→0.85rem に縮小 */
+    border-radius: 16px; /* 20pxↁE6px に縮封E*/
+    font-size: 0.85rem; /* 0.9remↁE.85rem に縮封E*/
     font-weight: 500;
     color: var(--text-color);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* 影を縮小 */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* 影を縮封E*/
   }
   .navRow {
     gap: 0;
     flex-direction: column;
     align-items: stretch;
     padding-bottom: 0;
-    margin-top: 4px; /* 上の間隔を追加して調整 */
+    margin-top: 4px; /* 上�E間隔を追加して調整 */
   }
   .userArea {
     margin-left: 0;
@@ -282,10 +282,10 @@ body.dark-mode .themeToggleButton:hover {
     justify-content: center;
   }
   .logoMain {
-    font-size: 1.8rem; /* 2.0rem→1.8rem に縮小 */
+    font-size: 1.8rem; /* 2.0remↁE.8rem に縮封E*/
   }
   .logoSub {
-    font-size: 1.0rem; /* 1.2rem→1.0rem に縮小 */
+    font-size: 1.0rem; /* 1.2remↁE.0rem に縮封E*/
   }
   .nav {
     flex-direction: column;
@@ -380,7 +380,7 @@ body.dark-mode .themeToggleButton:hover {
     display: none !important;
   }
   .header {
-    padding-bottom: 54px; /* 64px→54px に縮小 */
+    padding-bottom: 54px; /* 64pxↁE4px に縮封E*/
   }
 }
 

@@ -8,7 +8,7 @@
 .introSection {
   text-align: center;
   padding: 40px 0;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #065f46 0%, #047857 100%);
   border-radius: 16px;
   margin-bottom: 48px;
   color: white;
@@ -109,7 +109,7 @@
 }
 
 .primaryButton {
-  background: #10b981;
+  background: #065f46;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -120,7 +120,7 @@
 }
 
 .primaryButton:hover {
-  background: #059669;
+  background: #047857;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
@@ -142,7 +142,7 @@
   transform: translateY(-2px);
 }
 
-/* セクション共通 */
+/* セクション共送E*/
 .sectionTitle {
   text-align: center;
   font-size: 1.8rem;
@@ -267,7 +267,7 @@
 }
 
 .newPostButton {
-  background-color: #059669;
+  background-color: #047857;
 }
 
 .profileButton {

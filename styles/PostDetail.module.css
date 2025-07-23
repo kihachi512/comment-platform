@@ -1,6 +1,6 @@
 /* styles/PostDetail.module.css */
 
-/* 全体コンテナ */
+/* 全体コンチE�� */
 .container {
   max-width: 768px;
   margin: 0 auto;
@@ -17,7 +17,7 @@
   justify-content: center;
 }
 
-/* 戻るボタン */
+/* 戻る�Eタン */
 .backButton {
   background-color: #2563eb;
   color: white;
@@ -33,7 +33,7 @@
   background-color: #1d4ed8;
 }
 
-/* ページタイトル */
+/* ペ�Eジタイトル */
 .pageTitle {
   font-size: 1.6rem;
   font-weight: bold;
@@ -43,7 +43,7 @@
   letter-spacing: 0.01em;
 }
 
-/* 投稿カード */
+/* 投稿カーチE*/
 .postCard {
   background: var(--card-bg-color);
   border: 1px solid var(--border-color);
@@ -57,7 +57,7 @@
   align-items: center;
 }
 
-/* 投稿本文 */
+/* 投稿本斁E*/
 .postBody {
   font-size: 1.3rem;
   font-weight: bold;
@@ -65,7 +65,7 @@
   text-align: left;
 }
 
-/* 投稿者と日時 */
+/* 投稿老E��日晁E*/
 .author {
   font-size: 1rem;
   color: var(--subtle-text-color);
@@ -100,20 +100,20 @@
   text-align: center;
 }
 
-/* コメントなし */
+/* コメントなぁE*/
 .noComments {
   color: var(--subtle-text-color);
   text-align: center;
 }
 
-/* コメントリスト */
+/* コメントリスチE*/
 .commentList {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* 各コメントボックス */
+/* 吁E��メント�EチE��ス */
 .commentBox {
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -122,7 +122,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* コメント内容と日時 */
+/* コメント�E容と日晁E*/
 .commentDate {
   font-size: 0.95rem;
   color: var(--subtle-text-color);
@@ -144,7 +144,7 @@
   margin: 0 auto 32px auto;
 }
 
-/* テキストエリア */
+/* チE��ストエリア */
 .textareaWrapper {
   margin-bottom: 16px;
   width: 100%;
@@ -177,7 +177,7 @@
 .submitButton {
   display: block;
   margin: 0 auto;
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
+  background: linear-gradient(90deg, #065f46 60%, #047857 100%);
   color: white;
   padding: 10px 22px;
   font-size: 15px;
@@ -197,7 +197,7 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
+  background: linear-gradient(90deg, #047857 60%, #065f46 100%);
 }
 
 @media (max-width: 600px) {

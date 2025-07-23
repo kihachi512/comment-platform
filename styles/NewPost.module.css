@@ -36,7 +36,7 @@
 }
 
 .submitButton {
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
+  background: linear-gradient(90deg, #065f46 60%, #047857 100%);
   color: white;
   padding: 10px 22px;
   font-size: 15px;
@@ -56,7 +56,7 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
+  background: linear-gradient(90deg, #047857 60%, #065f46 100%);
 }
 
 .submitButton:disabled {
@@ -64,13 +64,13 @@
   cursor: not-allowed;
 }
 
-/* 投稿成功ポップアップ */
+/* 投稿成功ポップアチE�E */
 .successPopup {
   position: fixed;
   top: 32px;
   left: 50%;
   transform: translateX(-50%);
-  background: #059669;
+  background: #047857;
   color: #fff;
   padding: 18px 32px;
   border-radius: 12px;
@@ -91,7 +91,7 @@
   100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
 }
 
-/* 投稿エラーポップアップ */
+/* 投稿エラーポップアチE�E */
 .errorPopup {
   position: fixed;
   top: 32px;

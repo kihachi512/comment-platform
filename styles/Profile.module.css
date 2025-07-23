@@ -70,13 +70,13 @@
   color: #16a34a;
 }
 
-/* プロフィール更新成功ポップアップ */
+/* プロフィール更新成功ポップアチE�E */
 .successPopup {
   position: fixed;
   top: 32px;
   left: 50%;
   transform: translateX(-50%);
-  background: #059669;
+  background: #047857;
   color: #fff;
   padding: 18px 32px;
   border-radius: 12px;
@@ -90,7 +90,7 @@
   animation: fadeInOut 2s;
 }
 
-/* プロフィールエラーポップアップ */
+/* プロフィールエラーポップアチE�E */
 .errorPopup {
   position: fixed;
   top: 32px;
@@ -255,7 +255,7 @@ body.dark-mode .themeToggleButton {
 .loginStatus {
   font-size: 1rem;
   font-weight: 600;
-  color: #059669;
+  color: #047857;
 }
 
 .emailInfo {
@@ -265,7 +265,7 @@ body.dark-mode .themeToggleButton {
 }
 
 .loginButton {
-  background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(90deg, #047857 0%, #065f46 100%);
   color: white;
   padding: 12px 24px;
   font-size: 1rem;
@@ -280,7 +280,7 @@ body.dark-mode .themeToggleButton {
 }
 
 .loginButton:hover {
-  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(90deg, #065f46 0%, #047857 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
 }
@@ -510,7 +510,7 @@ body.dark-mode .themeToggleButton {
     padding: 10px 0;
   }
 
-  /* 過去24時間の投稿セクションのモバイル対応 */
+  /* 過去24時間の投稿セクションのモバイル対忁E*/
   .recentPostsSection {
     margin-top: 24px;
     padding: 16px 0 0 0;
@@ -546,7 +546,7 @@ body.dark-mode .themeToggleButton {
     font-size: 0.95rem;
   }
 
-  /* ログイン・ログアウトセクションのモバイル対応 */
+  /* ログイン・ログアウトセクションのモバイル対忁E*/
   .authSection {
     margin-top: 20px;
     padding-top: 20px;
