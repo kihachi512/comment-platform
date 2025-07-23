@@ -152,7 +152,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
 
           {/* ログイン・ログアウトセクション */}
           <div className={styles.authSection}>
-            <span className={styles.authLabel}>アカウント:</span>
             {session ? (
               <div className={styles.authButtons}>
                 <div className={styles.loginInfo}>
