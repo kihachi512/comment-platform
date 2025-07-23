@@ -1,394 +1,165 @@
-.header {
-  width: 100%;
-  background: var(--card-bg-color);
-  border-bottom: 1.5px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px 0 0 0;
-  margin-bottom: 32px;
-  box-sizing: border-box;
-  position: relative;
-}
-.logoRow {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-  gap: 16px;
-}
-.logoWrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-.logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-.logoMain {
-  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
-  font-size: 2.1rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: var(--text-color);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.logoSub {
-  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
-  font-size: 1.05rem;
-  color: var(--subtle-text-color);
-  font-weight: 500;
-  margin-top: 2px;
-  margin-left: 2px;
-  letter-spacing: 0.01em;
+.navbar {
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.2);
+  backdrop-filter: blur(10px);
 }
 
-.mobileUserName {
-  display: none; /* デスクトップでは非表示 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ffffff, #f0f9ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
 .nav {
   display: flex;
+  gap: 2rem;
   align-items: center;
-  gap: 16px;
-  margin-left: auto;
-  margin-right: 24px;
-}
-.navRow {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-  margin-bottom: 0;
-  padding-bottom: 16px;
-}
-.userArea {
-  margin-left: 32px;
-}
-.userName {
-  font-weight: bold;
-  color: var(--text-color);
-  font-size: 1rem;
-}
-.userId {
-  color: var(--subtle-text-color);
-  font-size: 0.95rem;
-  margin-left: 2px;
-}
-.nav button, .loginButton, .logoutButton {
-  font-weight: bold;
-  font-size: 15px;
-  padding: 10px 22px;
-  border: none;
-  border-radius: 8px;
-  margin: 0 2px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
-  outline: none;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-  position: relative;
-  top: 0;
-}
-.nav button:active, .loginButton:active, .logoutButton:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-.newPostButton {
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
-  color: #fff;
-}
-.newPostButton:hover {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
-}
-.profileButton {
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
-  color: #fff;
-}
-.profileButton:hover {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
-}
-.aboutButton {
-  background: linear-gradient(90deg, #f59e42 60%, #fbbf24 100%);
-  color: #fff;
-}
-.aboutButton:hover {
-  background: linear-gradient(90deg, #fbbf24 60%, #f59e42 100%);
-}
-.loginButton {
-  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
-  color: #fff;
-}
-.loginButton:hover {
-  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
-}
-.logoutButton {
-  background: linear-gradient(90deg, #6b7280 60%, #374151 100%);
-  color: #fff;
-}
-.logoutButton:hover {
-  background: linear-gradient(90deg, #374151 60%, #6b7280 100%);
-}
-.themeToggleWrapper {
-  position: absolute;
-  left: 24px;
-}
-.themeToggleButton {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-}
-.themeToggleButton:hover {
-  background-color: rgba(0,0,0,0.1);
-}
-body.dark-mode .themeToggleButton:hover {
-  background-color: rgba(255,255,255,0.1);
 }
 
-.desktopNav {
-  display: flex;
-  gap: 12px;
-}
-/* Remove hamburger/drawer/mobileMenu styles */
-.listButton {
-  background: linear-gradient(90deg, #6b7280 60%, #9ca3af 100%);
-  color: #fff;
-  min-width: 120px;
-  font-weight: bold;
-  font-size: 15px;
-  padding: 10px 22px;
-  border: none;
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  margin: 0 2px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
-  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.authButton {
+  background: white;
+  color: #047857;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
   cursor: pointer;
-  letter-spacing: 0.01em;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.authButton:hover {
+  background: #f0f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.userMenu {
   position: relative;
-  top: 0;
 }
-.listButton:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+
+.userButton {
+  background: white;
+  color: #047857;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 }
-.listButton:hover {
-  background: linear-gradient(90deg, #9ca3af 60%, #6b7280 100%);
+
+.userButton:hover {
+  background: #f0f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
-.newPostButton, .profileButton, .aboutButton {
-  min-width: 120px;
-}
-.drawerOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.25);
-  z-index: 110;
-}
-.drawerMenu {
-  position: fixed;
-  top: 0;
+
+.dropdown {
+  position: absolute;
+  top: 100%;
   right: 0;
-  width: 82vw;
-  max-width: 340px;
-  height: 100vh;
-  background: var(--card-bg-color);
-  box-shadow: -4px 0 24px rgba(0,0,0,0.18);
-  z-index: 120;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px 0 16px 0;
-  gap: 18px;
-  animation: slideInDrawer 0.22s cubic-bezier(.4,0,.2,1);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.1);
 }
-.drawerClose {
-  position: absolute;
-  top: 12px;
-  right: 18px;
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: #047857;
+  text-decoration: none;
   background: none;
   border: none;
-  font-size: 2.2rem;
-  color: var(--subtle-text-color);
+  text-align: left;
   cursor: pointer;
-  z-index: 130;
-}
-@keyframes slideInDrawer {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-@media (max-width: 800px) {
-  .logoRow {
-    margin-bottom: 6px; /* 12px→6px に縮小 */
-    gap: 4px; /* 8px→4px に縮小 */
-    flex-direction: column;
-    align-items: center;
-  }
-  .mobileUserName {
-    display: flex !important; /* スマホでは表示 */
-    align-items: center;
-    gap: 6px; /* 8px→6px に縮小 */
-    margin-top: 4px; /* 8px→4px に縮小 */
-    margin-bottom: 2px; /* 下余白を追加 */
-    padding: 6px 12px; /* 8px 16px → 6px 12px に縮小 */
-    background: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 16px; /* 20px→16px に縮小 */
-    font-size: 0.85rem; /* 0.9rem→0.85rem に縮小 */
-    font-weight: 500;
-    color: var(--text-color);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* 影を縮小 */
-  }
-  .navRow {
-    gap: 0;
-    flex-direction: column;
-    align-items: stretch;
-    padding-bottom: 0;
-    margin-top: 4px; /* 上の間隔を追加して調整 */
-  }
-  .userArea {
-    margin-left: 0;
-    margin-top: 12px;
-  }
-  .desktopNav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    width: 100%;
-    justify-content: center;
-  }
+  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 16px 0 10px 0;
-    margin-bottom: 16px;
+.dropdownItem:hover {
+  background: #f0f9ff;
+  color: #059669;
+}
+
+.dropdownItem:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dropdownItem:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
   }
-  .logoWrapper {
-    margin: 0 auto;
-    justify-content: center;
-  }
-  .logoMain {
-    font-size: 1.8rem; /* 2.0rem→1.8rem に縮小 */
-  }
-  .logoSub {
-    font-size: 1.0rem; /* 1.2rem→1.0rem に縮小 */
-  }
+  
   .nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    margin: 0 0 10px 0;
+    gap: 1rem;
   }
-  .nav button {
-    width: 100%;
-    font-size: 1rem;
-    padding: 10px 0;
+  
+  .navLink {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
-  .userArea {
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-    margin: 0;
-    gap: 6px;
-    justify-content: center;
-    text-align: center;
+  
+  .authButton,
+  .userButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
   }
-  .userName, .userId {
-    font-size: 0.98rem;
-    text-align: center;
-    margin: 8px 0;
-  }
-  .loginButton, .logoutButton {
-    width: 100%;
-    font-size: 1rem;
-    padding: 10px 0;
-  }
-  .desktopNav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .desktopNav button {
-    width: 100%;
-    max-width: 98vw;
-    font-size: 1.1rem;
-    margin: 0 auto;
-    margin-bottom: 0;
-    padding: 14px 0;
-    border-radius: 10px;
-  }
-  .bottomNavWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    background: none;
-    pointer-events: none;
-  }
-
-  .bottomNav {
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: var(--card-bg-color);
-    border-top: 1.5px solid var(--border-color);
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-    padding: 2px 0 4px 0;
-    position: relative;
-    pointer-events: auto;
-  }
-  .bottomNavItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--subtle-text-color);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 500;
-    flex: 1 1 0;
-    padding: 6px 0 2px 0;
-    transition: color 0.18s;
-    border-radius: 8px;
-  }
-  .bottomNavItem:active, .bottomNavItem:hover {
-    color: var(--text-color);
-    background: rgba(0,0,0,0.04);
-  }
-  .navRow, .desktopNav, .userArea {
-    display: none !important;
-  }
-  .header {
-    padding-bottom: 54px; /* 64px→54px に縮小 */
-  }
-}
-
-@media (min-width: 601px) {
-  .bottomNavWrapper {
-    display: none !important;
-  }
-}
-.nav, .desktopNav, .bottomNav, .bottomNavItem, .userArea, .userName, .userId, .nav button, .loginButton, .logoutButton, .listButton, .newPostButton, .profileButton, .aboutButton {
-  font-family: 'Montserrat', 'Noto Sans JP', 'Segoe UI', 'Arial', system-ui, sans-serif;
 }
