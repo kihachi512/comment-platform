@@ -230,30 +230,32 @@ body.dark-mode .themeToggleButton:hover {
 }
 @media (max-width: 800px) {
   .logoRow {
-    margin-bottom: 12px;
-    gap: 8px;
+    margin-bottom: 6px; /* 12px→6px に縮小 */
+    gap: 4px; /* 8px→4px に縮小 */
     flex-direction: column;
     align-items: center;
   }
   .mobileUserName {
     display: flex !important; /* スマホでは表示 */
     align-items: center;
-    gap: 8px;
-    margin-top: 8px;
-    padding: 8px 16px;
+    gap: 6px; /* 8px→6px に縮小 */
+    margin-top: 4px; /* 8px→4px に縮小 */
+    margin-bottom: 2px; /* 下余白を追加 */
+    padding: 6px 12px; /* 8px 16px → 6px 12px に縮小 */
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    font-size: 0.9rem;
+    border-radius: 16px; /* 20px→16px に縮小 */
+    font-size: 0.85rem; /* 0.9rem→0.85rem に縮小 */
     font-weight: 500;
     color: var(--text-color);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* 影を縮小 */
   }
   .navRow {
     gap: 0;
     flex-direction: column;
     align-items: stretch;
     padding-bottom: 0;
+    margin-top: 4px; /* 上の間隔を追加して調整 */
   }
   .userArea {
     margin-left: 0;
@@ -280,10 +282,10 @@ body.dark-mode .themeToggleButton:hover {
     justify-content: center;
   }
   .logoMain {
-    font-size: 2.0rem;
+    font-size: 1.8rem; /* 2.0rem→1.8rem に縮小 */
   }
   .logoSub {
-    font-size: 1.2rem;
+    font-size: 1.0rem; /* 1.2rem→1.0rem に縮小 */
   }
   .nav {
     flex-direction: column;
@@ -378,7 +380,7 @@ body.dark-mode .themeToggleButton:hover {
     display: none !important;
   }
   .header {
-    padding-bottom: 64px;
+    padding-bottom: 54px; /* 64px→54px に縮小 */
   }
 }
 
