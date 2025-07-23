@@ -10,7 +10,14 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
-  const [recentPosts, setRecentPosts] = useState<{ postId: string; body: string; commentCount: number; createdAt: string }[]>([]);
+  const [recentPosts, setRecentPosts] = useState<{ 
+    postId: string; 
+    body: string; 
+    commentCount: number; 
+    createdAt: string;
+    authorId: string;
+    authorName?: string;
+  }[]>([]);
   const [postsLoading, setPostsLoading] = useState(false);
   useEffect(() => {
     if (session?.user?.email) {

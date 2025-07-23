@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 各投稿のコメント数を取得
     const postsWithCommentCount = await Promise.all(
-      posts.map(async (post: any) => {
+      posts.map(async (post: Record<string, unknown>) => {
         try {
           const commentResult = await client.send(
             new QueryCommand({
@@ -50,14 +50,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               IndexName: "postId-index",
               KeyConditionExpression: "postId = :pid",
               ExpressionAttributeValues: {
-                ":pid": { S: post.postId },
+                ":pid": { S: post.postId as string },
               },
               Select: "COUNT",
             })
           );
           return { ...post, commentCount: commentResult.Count || 0 };
         } catch (error) {
-          console.error(`コメント数取得エラー for postId ${post.postId}:`, error);
+          console.error(`コメント数取得エラー for postId ${post.postId as string}:`, error);
           return { ...post, commentCount: 0 };
         }
       })
@@ -65,13 +65,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 有効期限のチェック（TTLが設定されているが未削除の投稿を除外）
     const now = Math.floor(Date.now() / 1000);
-    const validPosts = postsWithCommentCount.filter((post) => 
-      !post.expiresAt || post.expiresAt > now
+    const validPosts = postsWithCommentCount.filter((post: any) => 
+      !post.expiresAt || (post.expiresAt as number) > now
     );
 
     // 作成日時の降順でソート（新しい投稿が上に）
-    const sortedPosts = validPosts.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    const sortedPosts = validPosts.sort((a: any, b: any) => 
+      new Date(b.createdAt as string).getTime() - new Date(a.createdAt as string).getTime()
     );
 
     res.status(200).json(sortedPosts);
