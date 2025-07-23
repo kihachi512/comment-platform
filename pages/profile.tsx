@@ -26,7 +26,7 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
   /*// 自分の投稿（過去24時間分のみ）を取得
   useEffect(() => {
     if (!userId) return;
-    fetch("/api/posts")
+    fetch("/api/posts?all=1")
       .then((res) => res.json())
       .then((data) => {
         const now = Date.now();

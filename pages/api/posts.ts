@@ -35,7 +35,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     );
     const now = Math.floor(Date.now() / 1000);
-    const filtered = postsWithCommentCount?.filter((item) => !item.expiresAt || item.expiresAt > now);
+    let filtered = postsWithCommentCount;
+    if (!req.query.all) {
+      filtered = postsWithCommentCount?.filter((item) => !item.expiresAt || item.expiresAt > now);
+    }
     res.status(200).json(filtered);
   } catch (err) {
     console.error(err);
