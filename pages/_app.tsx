@@ -4,33 +4,17 @@ import { SessionProvider } from "next-auth/react";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
 import "../styles/globals.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import ErrorBoundary from "../components/ErrorBoundary";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState("light");
-
   useEffect(() => {
-    // クライアントサイドでのみlocalStorageにアクセス
+    // ダークモードを常に適用
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme) {
-        setTheme(savedTheme);
-        document.body.classList.toggle("dark-mode", savedTheme === "dark");
-      }
+      document.body.classList.add("dark-mode");
     }
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    // クライアントサイドでのみlocalStorageとdocumentにアクセス
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", newTheme);
-      document.body.classList.toggle("dark-mode", newTheme === "dark");
-    }
-  };
 
   return (
     <ErrorBoundary>
@@ -74,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </Head>
         <NavBar />
-        <Component {...pageProps} toggleTheme={toggleTheme} theme={theme} />
+        <Component {...pageProps} />
         <Footer />
       </SessionProvider>
     </ErrorBoundary>

@@ -14,4 +14,3 @@ Crawl-delay: 1
 Disallow: /api/
 Disallow: /post/
 Disallow: /_next/
-Disallow: /setting

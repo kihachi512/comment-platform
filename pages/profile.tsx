@@ -4,7 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 import Link from "next/link";
 
-export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) {
+export default function ProfilePage() {
   const { data: session, status, update } = useSession();
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
@@ -143,13 +143,6 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
           ) : (
             <p className={styles.notLoggedInMsg}>ログインするとユーザー名を設定できます。</p>
           )}
-          <div className={styles.themeToggleWrapper}>
-            <span className={styles.themeLabel}>テーマ切り替え:</span>
-            <button onClick={toggleTheme} className={styles.themeToggleButton}>
-              {theme === 'light' ? '🌙 ダーク' : '☀️ ライト'}
-            </button>
-          </div>
-
           {/* ログイン・ログアウトセクション */}
           <div className={styles.authSection}>
             {session ? (

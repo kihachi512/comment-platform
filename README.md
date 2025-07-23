@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Textories - 1時間で消えるメッセージサービス
 
-## Getting Started
+投稿が1時間で自動的に見えなくなる新感覚のメッセージサービスです。
 
-First, run the development server:
+## ✨ 特徴
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **⏰ 1時間で自動削除**: 投稿は1時間後に自動的に見えなくなります
+- **👤 匿名投稿可能**: ログインなしでも気軽に投稿できます
+- **💬 気軽にコメント**: 投稿に対してコメントで反応できます
+- **🌙 ダークモード**: 見やすいダークテーマで統一
+- **🔐 Google認証**: セキュアなGoogle アカウント連携
+
+## 🚀 デプロイ
+
+### Vercel (推奨)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/textories)
+
+1. **環境変数の設定** (Vercel Dashboard で設定)
+
+```env
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# NextAuth
+NEXTAUTH_URL=https://your-domain.vercel.app
+NEXTAUTH_SECRET=your_secure_secret
+
+# AWS DynamoDB
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=ap-northeast-1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **AWS DynamoDB テーブル作成**
+   - `Users` テーブル (Primary Key: email)
+   - `Posts` テーブル (Primary Key: postId)
+   - `Comments` テーブル (Primary Key: commentId, GSI: postId-index)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Google OAuth 設定**
+   - [Google Cloud Console](https://console.cloud.google.com/) でプロジェクト作成
+   - OAuth 2.0 認証情報を作成
+   - 認証済みリダイレクト URI: `https://your-domain.vercel.app/api/auth/callback/google`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ 開発
 
-## Learn More
+### 必要な環境
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18.x 以上
+- npm または yarn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### セットアップ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **リポジトリのクローン**
+```bash
+git clone https://github.com/yourusername/textories.git
+cd textories
+```
 
-## Deploy on Vercel
+2. **依存関係のインストール**
+```bash
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **環境変数の設定**
+```bash
+cp .env.local.example .env.local
+# .env.local を編集して必要な値を設定
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **開発サーバーの起動**
+```bash
+npm run dev
+```
+
+### 利用可能なスクリプト
+
+```bash
+npm run dev          # 開発サーバー起動
+npm run build        # プロダクションビルド
+npm run start        # プロダクションサーバー起動
+npm run lint         # ESLint実行
+npm run agent:check  # エージェント設定チェック
+```
+
+## 📚 技術スタック
+
+- **Frontend**: Next.js 15.3.4 + TypeScript + React 19
+- **Styling**: CSS Modules + Custom CSS
+- **Backend**: Next.js API Routes
+- **Database**: AWS DynamoDB
+- **Authentication**: NextAuth.js (Google Provider)
+- **Deployment**: Vercel
+- **Security**: CSP, HTTPS headers
+
+## 🔒 セキュリティ
+
+- Content Security Policy (CSP) 設定済み
+- セキュリティヘッダーの実装
+- HTTPS強制
+- 入力値のバリデーション
+- XSS対策
+
+## 📁 プロジェクト構造
+
+```
+textories/
+├── pages/           # ページコンポーネント
+│   ├── api/        # API エンドポイント
+│   ├── index.tsx   # ホームページ
+│   ├── new.tsx     # 新規投稿
+│   └── profile.tsx # プロフィール
+├── components/     # 再利用可能コンポーネント
+├── styles/         # CSS ファイル
+├── public/         # 静的ファイル
+└── types/          # TypeScript 型定義
+```
+
+## 🤝 貢献
+
+1. このリポジトリをフォーク
+2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m 'Add amazing feature'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを開く
+
+## 📄 ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。
+
+## 🙏 謝辞
+
+- [Next.js](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [AWS DynamoDB](https://aws.amazon.com/dynamodb/)
+- [Vercel](https://vercel.com/)
+
+---
+
+**桃缶党** で開発 🍑
