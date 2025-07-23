@@ -19,7 +19,7 @@
 
 /* 戻るボタン */
 .backButton {
-  background-color: #2563eb;
+  background-color: #10b981;
   color: white;
   border: none;
   border-radius: 6px;
@@ -30,7 +30,7 @@
   transition: background 0.2s;
 }
 .backButton:hover {
-  background-color: #1d4ed8;
+  background-color: #059669;
 }
 
 /* ページタイトル */

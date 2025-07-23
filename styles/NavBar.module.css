@@ -107,11 +107,11 @@
   background: linear-gradient(90deg, #059669 60%, #10b981 100%);
 }
 .profileButton {
-  background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
+  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
   color: #fff;
 }
 .profileButton:hover {
-  background: linear-gradient(90deg, #3b82f6 60%, #2563eb 100%);
+  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
 }
 .aboutButton {
   background: linear-gradient(90deg, #f59e42 60%, #fbbf24 100%);
@@ -121,11 +121,11 @@
   background: linear-gradient(90deg, #fbbf24 60%, #f59e42 100%);
 }
 .loginButton {
-  background: linear-gradient(90deg, #3b82f6 60%, #2563eb 100%);
+  background: linear-gradient(90deg, #10b981 60%, #059669 100%);
   color: #fff;
 }
 .loginButton:hover {
-  background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
+  background: linear-gradient(90deg, #059669 60%, #10b981 100%);
 }
 .logoutButton {
   background: linear-gradient(90deg, #6b7280 60%, #374151 100%);
