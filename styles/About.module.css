@@ -13,10 +13,228 @@
   padding: 40px 32px 32px 32px;
 }
 .title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 28px;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 32px;
   text-align: center;
+  color: var(--text-color);
+}
+
+/* コンセプトセクション */
+.conceptSection {
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  color: white;
+}
+
+.conceptTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.conceptDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* セクション共通 */
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--text-color);
+}
+
+/* 特徴セクション */
+.featuresSection {
+  margin-bottom: 40px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.featureCard {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.featureCard h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.featureCard p {
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* ユースケースセクション */
+.useCasesSection {
+  margin-bottom: 40px;
+}
+
+.useCaseList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.useCase {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: var(--text-color);
+  position: relative;
+  padding-left: 50px;
+}
+
+.useCase::before {
+  content: "💭";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+/* 仕組みセクション */
+.howItWorksSection {
+  margin-bottom: 40px;
+}
+
+.mechanismList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mechanism {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: var(--text-color);
+}
+
+.mechanism strong {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* 認証セクション */
+.authSection {
+  margin-bottom: 40px;
+}
+
+.authOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.authOption {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.authOption h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+.authOption p {
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* CTAセクション */
+.ctaSection {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--card-bg-color);
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+}
+
+.ctaText {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryCta {
+  background: #10b981;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.primaryCta:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.secondaryCta {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.secondaryCta:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 .description {
   font-size: 1.1rem;
