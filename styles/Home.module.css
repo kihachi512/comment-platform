@@ -11,7 +11,7 @@
   background: linear-gradient(135deg, #065f46 0%, #047857 100%);
   border-radius: 16px;
   margin-bottom: 48px;
-  color: white;
+  color: #065f46;
 }
 
 .heroContent {
@@ -51,11 +51,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  color: white;
+  color: #065f46;
 }
 
 .introSubtitle {
-  font-size: 1rem;
+  font-size: 1rem; border: 2px solid #ffffff;
   font-weight: 600;
   opacity: 0.9;
 }
@@ -91,7 +91,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
@@ -109,14 +109,14 @@
 }
 
 .primaryButton {
-  background: #065f46;
-  color: white;
+  background: #ffffff;
+  color: #065f46;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: 1rem; border: 2px solid #ffffff;
 }
 
 .primaryButton:hover {
@@ -126,14 +126,14 @@
 }
 
 .secondaryButton {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: transparent;
+  color: #065f46;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: 1rem; border: 2px solid #ffffff;
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -153,19 +153,19 @@
 
 /* トグルボタン */
 .toggleButton {
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
-  color: white;
+  color: #065f46;
   transition: all 0.2s ease;
 }
 
 .toggleButton:hover {
   background: rgba(255, 255, 255, 0.3);
-  color: white;
+  color: #065f46;
 }
 
 .steps {
@@ -189,7 +189,7 @@
   width: 40px;
   height: 40px;
   background: #3b82f6;
-  color: white;
+  color: #065f46;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -253,7 +253,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: white;
+  color: #065f46;
   font-size: 14px;
   font-weight: bold;
 }
@@ -323,7 +323,7 @@
   align-items: center;
 }
 .commentCount {
-  font-size: 1rem;
+  font-size: 1rem; border: 2px solid #ffffff;
   color: #6b7280;
   font-weight: bold;
   flex-shrink: 0;
@@ -368,7 +368,7 @@
   }
   
   .heroSubtitle {
-    font-size: 1rem;
+    font-size: 1rem; border: 2px solid #ffffff;
   }
   
   .introHeader {
@@ -392,7 +392,7 @@
   }
   
   .heroDescription {
-    font-size: 1rem;
+    font-size: 1rem; border: 2px solid #ffffff;
     margin-bottom: 24px;
   }
   
@@ -456,7 +456,7 @@
   }
   .actions button {
     width: 100%;
-    font-size: 1rem;
+    font-size: 1rem; border: 2px solid #ffffff;
     padding: 10px 0;
   }
 }
