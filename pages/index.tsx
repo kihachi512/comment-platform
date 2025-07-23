@@ -10,7 +10,34 @@ export default function Home() {
   const { data: session } = useSession();
   const [username, setUsername] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
+  const [showHero, setShowHero] = useState<boolean>(true);
   const [showHowTo, setShowHowTo] = useState<boolean>(true);
+
+  // localStorage から折りたたみ状態を復元
+  useEffect(() => {
+    const savedHeroState = localStorage.getItem('textories-show-hero');
+    const savedHowToState = localStorage.getItem('textories-show-howto');
+    
+    if (savedHeroState !== null) {
+      setShowHero(JSON.parse(savedHeroState));
+    }
+    if (savedHowToState !== null) {
+      setShowHowTo(JSON.parse(savedHowToState));
+    }
+  }, []);
+
+  // 状態変更時に localStorage に保存
+  const toggleHero = () => {
+    const newState = !showHero;
+    setShowHero(newState);
+    localStorage.setItem('textories-show-hero', JSON.stringify(newState));
+  };
+
+  const toggleHowTo = () => {
+    const newState = !showHowTo;
+    setShowHowTo(newState);
+    localStorage.setItem('textories-show-howto', JSON.stringify(newState));
+  };
 
   useEffect(() => {
     fetch("/api/posts")
@@ -78,38 +105,48 @@ export default function Home() {
 
       {/* ヒーローセクション */}
       <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
+        <div className={styles.heroHeader}>
+          <h1 className={styles.heroTitleCompact}>
             📝 Textories
-            <span className={styles.heroSubtitle}>1時間で消えるメッセージ</span>
+            <span className={styles.heroSubtitleCompact}>1時間で消えるメッセージ</span>
           </h1>
-          <p className={styles.heroDescription}>
-            今この瞬間の気持ちを投稿しよう。<br />
-            投稿は<strong>1時間後に自動で消える</strong>から、気軽に本音を表現できます。
-          </p>
-          <div className={styles.heroFeatures}>
-            <div className={styles.feature}>
-              <span className={styles.featureIcon}>⏰</span>
-              <span>1時間で自動消去</span>
-            </div>
-            <div className={styles.feature}>
-              <span className={styles.featureIcon}>👤</span>
-              <span>匿名投稿可能</span>
-            </div>
-            <div className={styles.feature}>
-              <span className={styles.featureIcon}>💬</span>
-              <span>気軽にコメント</span>
-            </div>
-          </div>
-          <div className={styles.heroActions}>
-            <Link href="/new" className={styles.primaryButton}>
-              📝 今すぐ投稿する
-            </Link>
-            <Link href="/about" className={styles.secondaryButton}>
-              サービス詳細
-            </Link>
-          </div>
+          <button 
+            className={styles.toggleButton}
+            onClick={toggleHero}
+          >
+            {showHero ? '▲ 閉じる' : '▼ サービス詳細'}
+          </button>
         </div>
+        {showHero && (
+          <div className={styles.heroContent}>
+            <p className={styles.heroDescription}>
+              今この瞬間の気持ちを投稿しよう。<br />
+              投稿は<strong>1時間後に自動で消える</strong>から、気軽に本音を表現できます。
+            </p>
+            <div className={styles.heroFeatures}>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>⏰</span>
+                <span>1時間で自動消去</span>
+              </div>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>👤</span>
+                <span>匿名投稿可能</span>
+              </div>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>💬</span>
+                <span>気軽にコメント</span>
+              </div>
+            </div>
+            <div className={styles.heroActions}>
+              <Link href="/new" className={styles.primaryButton}>
+                📝 今すぐ投稿する
+              </Link>
+              <Link href="/about" className={styles.secondaryButton}>
+                サービス詳細
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 使い方説明 */}
@@ -118,7 +155,7 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>📖 使い方</h2>
           <button 
             className={styles.toggleButton}
-            onClick={() => setShowHowTo(!showHowTo)}
+            onClick={toggleHowTo}
           >
             {showHowTo ? '▲ 閉じる' : '▼ 詳しく見る'}
           </button>
