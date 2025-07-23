@@ -5,7 +5,6 @@ import { JWT } from "next-auth/jwt";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { customAlphabet } from "nanoid";
-import bcrypt from "bcryptjs";
 
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 12);

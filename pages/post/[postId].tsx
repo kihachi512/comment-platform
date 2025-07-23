@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import styles from "../../styles/PostDetail.module.css";
 
 export default function PostDetail() {
@@ -53,7 +52,7 @@ export default function PostDetail() {
           .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         setComments(enriched);
       });
-  }, [postId]);
+  }, [postId, router.query.viewerUserId]);
 
   const submitComment = async () => {
     setError("");

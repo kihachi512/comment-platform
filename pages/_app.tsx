@@ -10,10 +10,8 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState("light");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     // クライアントサイドでのみlocalStorageにアクセス
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme");
@@ -47,9 +45,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name="twitter:card" content="summary" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
           
           {/* 構造化データ */}
           <script
