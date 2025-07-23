@@ -112,12 +112,12 @@ export default function Home() {
             <div className={styles.heroContent}>
               <p className={styles.heroDescription}>
                 今この瞬間の気持ちを投稿しよう。<br />
-                投稿は<strong>1時間後に自動で消える</strong>から、気軽に本音を表現できます。
+                投稿は<strong>1時間後に自動で消える</strong>から、ふらっとつぶやけます。
               </p>
               <div className={styles.heroFeatures}>
                 <div className={styles.feature}>
                   <span className={styles.featureIcon}>⏰</span>
-                  <span>1時間で自動消去</span>
+                  <span>1時間で自動削除</span>
                 </div>
                 <div className={styles.feature}>
                   <span className={styles.featureIcon}>👤</span>
@@ -168,11 +168,10 @@ export default function Home() {
         {posts.length === 0 ? (
           <div className={styles.emptyState}>
             <p className={styles.emptyMessage}>
-              まだ投稿がありません。<br />
-              あなたが最初の投稿者になりませんか？
+              現在は投稿がありません。
             </p>
             <Link href="/new" className={styles.primaryButton}>
-              最初の投稿をする
+              新規投稿
             </Link>
           </div>
         ) : (
