@@ -4,7 +4,7 @@ import styles from "../styles/Profile.module.css";
 import Link from "next/link";
 
 export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) {
-  const { data: session, update } = useSession();
+  const { data: session, status, update } = useSession();
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
@@ -20,6 +20,9 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
         .then((data) => {
           if (data?.username) setUsername(data.username);
           if (data?.userId) setUserId(data.userId);
+        })
+        .catch((error) => {
+          console.error("プロフィール情報の取得に失敗しました:", error);
         });
     }
   }, [session]);
@@ -58,19 +61,26 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
       return;
     }
 
-    const res = await fetch("/api/profile", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: session?.user?.email, username }),
-    });
+    try {
+      const res = await fetch("/api/profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: session?.user?.email, username }),
+      });
 
-    if (res.ok) {
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 1800);
-      // セッション情報を更新
-      await update();
-    } else {
-      setError("更新に失敗しました。");
+      if (res.ok) {
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 1800);
+        // セッション情報を更新
+        await update();
+      } else {
+        setError("更新に失敗しました。");
+        setShowError(true);
+        setTimeout(() => setShowError(false), 1800);
+      }
+    } catch (error) {
+      console.error("ユーザー名保存エラー:", error);
+      setError("ネットワークエラーが発生しました。");
       setShowError(true);
       setTimeout(() => setShowError(false), 1800);
     }
@@ -91,6 +101,18 @@ export default function ProfilePage({ toggleTheme, theme }: { toggleTheme: () =>
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
   };
+
+  // セッションのロード中は何も表示しない（SSRとの整合性を保つため）
+  if (status === "loading") {
+    return (
+      <div className={styles.container}>
+        <div className={styles.cardWrapper}>
+          <h1 className={styles.heading}>💻マイページ</h1>
+          <div className={styles.loading}>読み込み中...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
