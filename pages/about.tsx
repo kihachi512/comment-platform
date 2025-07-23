@@ -40,8 +40,8 @@ export default function About() {
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>💬</div>
-              <h3>簡単リアクション</h3>
-              <p>ポジティブ・ネガティブの2つのボタンで気軽に反応できます</p>
+              <h3>気軽なコメント</h3>
+              <p>他の人の投稿にコメントで気軽に反応・共感できます</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>🔐</div>

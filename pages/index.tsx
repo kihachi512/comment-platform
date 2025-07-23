@@ -10,6 +10,7 @@ export default function Home() {
   const { data: session } = useSession();
   const [username, setUsername] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
+  const [showHowTo, setShowHowTo] = useState<boolean>(true);
 
   useEffect(() => {
     fetch("/api/posts")
@@ -113,24 +114,34 @@ export default function Home() {
 
       {/* 使い方説明 */}
       <section className={styles.howToSection}>
-        <h2 className={styles.sectionTitle}>📖 使い方</h2>
-        <div className={styles.steps}>
-          <div className={styles.step}>
-            <div className={styles.stepNumber}>1</div>
-            <h3>投稿する</h3>
-            <p>今の気持ちや考えを50文字以内で投稿</p>
-          </div>
-          <div className={styles.step}>
-            <div className={styles.stepNumber}>2</div>
-            <h3>交流する</h3>
-            <p>他の人の投稿にポジティブ・ネガティブでリアクション</p>
-          </div>
-          <div className={styles.step}>
-            <div className={styles.stepNumber}>3</div>
-            <h3>消える</h3>
-            <p>1時間後に投稿が自動で見えなくなります</p>
-          </div>
+        <div className={styles.howToHeader}>
+          <h2 className={styles.sectionTitle}>📖 使い方</h2>
+          <button 
+            className={styles.toggleButton}
+            onClick={() => setShowHowTo(!showHowTo)}
+          >
+            {showHowTo ? '▲ 閉じる' : '▼ 詳しく見る'}
+          </button>
         </div>
+        {showHowTo && (
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>1</div>
+              <h3>投稿する</h3>
+              <p>今の気持ちや考えを50文字以内で投稿</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>2</div>
+              <h3>交流する</h3>
+              <p>他の人の投稿にコメントで気軽に反応</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>3</div>
+              <h3>消える</h3>
+              <p>1時間後に投稿が自動で見えなくなります</p>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 最新投稿セクション */}
